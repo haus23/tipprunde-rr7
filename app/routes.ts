@@ -1,7 +1,11 @@
 import type { RouteConfig } from '@react-router/dev/routes';
-import { index, route } from '@react-router/dev/routes';
+import { index, layout, route } from '@react-router/dev/routes';
 
 export const routes: RouteConfig = [
-  index('routes/foh/tables/_route.tsx'),
-  route('manager', 'routes/manager/dashboard/_route.tsx'),
+  layout('routes/_layouts/foh-layout.tsx', [
+    index('routes/foh/tables/_route.tsx'),
+  ]),
+  layout('routes/_layouts/manager-layout.tsx', [
+    route('manager', 'routes/manager/dashboard/_route.tsx'),
+  ]),
 ];
