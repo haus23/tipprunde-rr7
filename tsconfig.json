@@ -21,10 +21,11 @@
     "allowJs": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "baseUrl": ".",
+    "noEmit": true,
+
+    // DX
     "paths": {
-      "~/*": ["./app/*"]
-    },
-    "noEmit": true
+      "#/*": ["./app/*"]
+    }
   }
 }
