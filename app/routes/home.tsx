@@ -1,9 +1,9 @@
-import type { MetaFunction } from "react-router";
+import type { MetaFunction } from 'react-router';
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "New Remix App" },
-    { name: "description", content: "Welcome to Remix!" },
+    { title: 'New Remix App' },
+    { name: 'description', content: 'Welcome to Remix!' },
   ];
 };
 
@@ -55,10 +55,12 @@ export default function Index() {
 
 const resources = [
   {
-    href: "https://reactrouter.com/dev",
-    text: "React Router Docs",
+    href: 'https://reactrouter.com/dev',
+    text: 'React Router Docs',
     icon: (
       <svg
+        role="img"
+        aria-label="React Router Logo"
         xmlns="http://www.w3.org/2000/svg"
         width="24"
         height="20"
@@ -75,10 +77,12 @@ const resources = [
     ),
   },
   {
-    href: "https://rmx.as/discord",
-    text: "Join Discord",
+    href: 'https://rmx.as/discord',
+    text: 'Join Discord',
     icon: (
       <svg
+        role="img"
+        aria-label="Remix Discord Channel Logo"
         xmlns="http://www.w3.org/2000/svg"
         width="24"
         height="20"
