@@ -26,6 +26,7 @@
     "@react-router/node": "0.0.0-nightly-12c37f0f0-20240928",
     "@react-router/serve": "0.0.0-nightly-12c37f0f0-20240928",
     "@tailwindcss/vite": "4.0.0-alpha.25",
+    "firebase-admin": "^12.5.0",
     "isbot": "~5.1.17",
     "react": "~18.3.1",
     "react-dom": "~18.3.1",
