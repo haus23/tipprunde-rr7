@@ -22,6 +22,7 @@
     "typecheck": "tsc"
   },
   "dependencies": {
+    "@prisma/client": "~5.20.0",
     "@react-router/node": "0.0.0-nightly-12c37f0f0-20240928",
     "@react-router/serve": "0.0.0-nightly-12c37f0f0-20240928",
     "@tailwindcss/vite": "4.0.0-alpha.25",
