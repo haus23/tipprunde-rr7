@@ -1,6 +1,29 @@
 # Changelog
 
 
+## v0.0.2
+
+[compare changes](https://github.com/haus23/tipprunde/compare/v0.0.1...v0.0.2)
+
+### 🚀 Enhancements
+
+- Add a manager dashboard route. ([a62c86f](https://github.com/haus23/tipprunde/commit/a62c86f))
+- Add layouts with logo. ([464a888](https://github.com/haus23/tipprunde/commit/464a888))
+- Secure the manager route. ([0a264ce](https://github.com/haus23/tipprunde/commit/0a264ce))
+
+### 💅 Refactors
+
+- Change path prefix. ([64425f2](https://github.com/haus23/tipprunde/commit/64425f2))
+
+### 🏡 Chore
+
+- Be more specific (and defensiv) with semvers. ([d1d3889](https://github.com/haus23/tipprunde/commit/d1d3889))
+- Update nightly version. ([264f7b8](https://github.com/haus23/tipprunde/commit/264f7b8))
+
+### ❤️ Contributors
+
+- Micha <micha@haus23.net>
+
 ## v0.0.1
 
 
