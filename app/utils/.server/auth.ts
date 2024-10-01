@@ -1,6 +1,7 @@
 import { redirect } from 'react-router';
 
 import { db } from './db';
+import { sendMail } from './email';
 
 /**
  * Validates email address against the user database
@@ -11,6 +12,20 @@ import { db } from './db';
 async function isKnownEmail(email: string) {
   const user = await db.user.findUnique({ where: { email } });
   return user !== null;
+}
+
+/**
+ * Notifies admin about a security breach
+ *
+ * @param props Subject and email body
+ */
+async function sendErrorMail(props: { subject: string; text: string }) {
+  await sendMail({
+    from: 'Tipprunde Security <security@runde.tips>',
+    to: 'Micha <micha@haus23.net>',
+    category: 'security',
+    ...props,
+  });
 }
 
 /**
@@ -26,13 +41,17 @@ export async function signup(request: Request) {
   const email = String(formData.get('email'));
 
   const valid = await isKnownEmail(email);
-  if (valid) {
-    throw redirect('/onboarding');
+  if (!valid) {
+    await sendErrorMail({
+      subject: 'Signup error with invalid email',
+      text: `Invalid email address: ${email}`,
+    });
+    return {
+      errors: { email: 'Unbekannte Email-Adresse. Wende dich an Micha.' },
+    };
   }
 
-  return {
-    errors: { email: 'Unbekannte Email-Adresse. Wende dich an Micha.' },
-  };
+  throw redirect('/onboarding');
 }
 
 /**
