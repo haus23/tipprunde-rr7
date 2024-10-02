@@ -1,5 +1,19 @@
 @import "tailwindcss";
 
 :root {
-  color-scheme: light dark;
+  /* Color tokens */
+  --mauve-1: #fdfcfd;
+  --mauve-dark-1: #121113;
+}
+@layer base {
+  :root {
+    color-scheme: light dark;
+
+    --bg-app: light-dark(white, var(--mauve-dark-1));
+  }
+}
+
+@theme {
+  --background-color-app: var(--bg-app);
+  --background-color-content: var(--bg-app);
 }
