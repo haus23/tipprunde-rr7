@@ -7,6 +7,7 @@ export const routes: RouteConfig = [
     // Auth Routes
     route('login', 'routes/auth/login.tsx'),
     route('onboarding', 'routes/auth/onboarding.tsx'),
+    route('logout', 'routes/auth/logout.tsx'),
   ]),
   layout('routes/_layouts/manager-layout.tsx', [
     route('manager', 'routes/manager/dashboard/_route.tsx'),
