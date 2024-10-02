@@ -1,8 +1,9 @@
-import { generateTOTP } from '@epic-web/totp';
+import { generateTOTP, verifyTOTP } from '@epic-web/totp';
 import { redirect } from 'react-router';
 
 import { db } from './db';
 import { sendMail } from './email';
+import { commitAuthSession, getAuthSession } from './sessions';
 
 /**
  * Gets user by email address
@@ -74,6 +75,41 @@ async function createLoginCode(email: string) {
 }
 
 /**
+ * Verfifies given code for email address
+ *
+ * @param email Email address code was generated for
+ * @param code Code candidate
+ * @returns Success or failure with error messages
+ */
+async function verifyLoginCode(
+  email: string,
+  code: string,
+): Promise<{ success: true } | { success: false; error: string }> {
+  const verificationData = await db.verification.findFirst({
+    where: { email },
+  });
+  if (!verificationData) {
+    return {
+      success: false,
+      error: 'Keine Code für diese Email-Adresse vorhanden!',
+    };
+  }
+
+  if (new Date() > verificationData.expiresAt) {
+    return {
+      success: false,
+      error: 'Code ist abgelaufen. Codes sind nur fünf Minuten gültig.',
+    };
+  }
+
+  const isValid = await verifyTOTP({ otp: code, ...verificationData });
+  if (isValid === null) {
+    return { success: false, error: 'Falscher Code.' };
+  }
+  return { success: true };
+}
+
+/**
  * Prepares users onboarding. Expects email in request form data.
  *
  * If no valid email address is in the form data, it returns an error.
@@ -99,7 +135,70 @@ export async function signup(request: Request) {
   const code = await createLoginCode(email);
   await sendCodeMail({ userName: user.name, code, email });
 
-  throw redirect('/onboarding');
+  const session = await getAuthSession(request);
+  session.flash('email', email);
+
+  throw redirect('/onboarding', {
+    headers: {
+      'Set-Cookie': await commitAuthSession(session),
+    },
+  });
+}
+
+/**
+ * Ensures that there is an ongoing onboarding session.
+ *
+ * Prevents the route from being called directly
+ *
+ * @param request Request object
+ */
+export async function ensureOnboardingSession(request: Request) {
+  const session = await getAuthSession(request);
+  const email = session.get('email');
+
+  if (!email) {
+    throw redirect('/login');
+  }
+
+  const user = await getUserByEmail(email);
+  if (!user) throw Error('Netter Versuch!');
+
+  return null;
+}
+
+/**
+ * Performs user login
+ *
+ * Expects valid email in session and totp code in request.
+ * Returns error for invalid data. Redirects to home otherwise.
+ *
+ * @param request Request object
+ */
+export async function login(request: Request) {
+  const session = await getAuthSession(request);
+  const email = session.get('email');
+
+  if (!email) {
+    throw redirect('/login');
+  }
+
+  const user = await getUserByEmail(email);
+  if (!user) throw Error('Netter Versuch!');
+
+  const formData = await request.formData();
+  const code = String(formData.get('code'));
+
+  // Verify code
+  const verifyResult = await verifyLoginCode(email, code);
+  if (!verifyResult.success) {
+    return { errors: { code: verifyResult.error } };
+  }
+
+  throw redirect('/', {
+    headers: {
+      'Set-Cookie': await commitAuthSession(session),
+    },
+  });
 }
 
 /**
