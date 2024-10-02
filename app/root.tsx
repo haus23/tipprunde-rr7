@@ -12,6 +12,7 @@ import { getUser } from './utils/.server/auth';
 import { combineHeaders } from './utils/misc';
 
 import './app.css';
+import { UIProvider } from './components/ui';
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const { user, headers: authHeaders } = await getUser(request);
@@ -29,7 +30,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body className="bg-app">
-        {children}
+        <UIProvider>{children}</UIProvider>
         <ScrollRestoration />
         <Scripts />
       </body>
