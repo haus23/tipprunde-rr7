@@ -1,6 +1,8 @@
 import { generateTOTP, verifyTOTP } from '@epic-web/totp';
 import { redirect } from 'react-router';
 
+import type { User } from '@prisma/client';
+
 import { db } from './db';
 import { sendMail } from './email';
 import {
@@ -228,10 +230,8 @@ export async function login(request: Request) {
  */
 export async function logout(
   request: Request,
-  options: { fallbackUrl: string },
+  options?: { fallbackUrl: string },
 ) {
-  const redirectUrl = request.headers.get('Referer') || options.fallbackUrl;
-
   const session = await getAuthSession(request);
   const sessionId = session.get('sessionId');
 
@@ -239,14 +239,64 @@ export async function logout(
     await db.session.deleteMany({ where: { id: sessionId } });
   }
 
-  throw redirect(redirectUrl, {
-    headers: {
-      'Set-Cookie': await destroyAuthSession(session),
-    },
+  const headers = new Headers({
+    'Set-Cookie': await destroyAuthSession(session),
   });
+
+  if (options?.fallbackUrl) {
+    const redirectUrl = request.headers.get('Referer') || options.fallbackUrl;
+    throw redirect(redirectUrl, {
+      headers,
+    });
+  }
+
+  return headers;
 }
 
 // Server auth helpers
+
+/**
+ * Validates app session and returns logged-in user or null.
+ * In case of invalid sessions all session data will be deleted.
+ *
+ * @param request Request Object
+ * @returns User or null
+ */
+export async function getUser(request: Request) {
+  const authSession = await getAuthSession(request);
+  const sessionId = authSession.get('sessionId');
+
+  if (!sessionId) {
+    return {
+      user: null,
+      headers: null,
+    };
+  }
+
+  const session = await db.session.findFirst({
+    where: { id: sessionId },
+  });
+
+  let user: User | null = null;
+
+  // Try to load user if session is still valid. This covers the rare case,
+  // that the user account is already deleted, but there is still a browser session
+  if (session && new Date() < session.expirationDate) {
+    user = await db.user.findFirst({ where: { id: session.userId } });
+  }
+
+  if (!user) {
+    return {
+      user: null,
+      headers: await logout(request),
+    };
+  }
+
+  return {
+    user,
+    headers: null,
+  };
+}
 
 /**
  * Loads user identified by session from db
