@@ -5,6 +5,9 @@ import { db } from './db';
 import { sendMail } from './email';
 import { commitAuthSession, getAuthSession } from './sessions';
 
+// Default max. session duration - if not without expiration
+export const SESSION_EXPIRATION_TIME = 60 * 60 * 24 * 30; // 30 days
+
 /**
  * Gets user by email address
  *
@@ -194,6 +197,18 @@ export async function login(request: Request) {
     return { errors: { code: verifyResult.error } };
   }
 
+  // Create app session
+  const expirationDate = new Date(Date.now() + SESSION_EXPIRATION_TIME * 1000);
+  const sessionData = await db.session.create({
+    select: { id: true },
+    data: {
+      userId: user.id,
+      expires: true,
+      expirationDate,
+    },
+  });
+
+  session.set('sessionId', sessionData.id);
   throw redirect('/', {
     headers: {
       'Set-Cookie': await commitAuthSession(session),
