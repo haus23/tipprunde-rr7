@@ -216,11 +216,46 @@ export async function login(request: Request) {
   });
 }
 
+// Server auth helpers
+
 /**
- * Ensures logged in user is admin
+ * Loads user identified by session from db
  *
- * @param request Request
+ * @param request Request object
+ * @returns User or null
+ */
+async function getOptionalUser(request: Request) {
+  const authSession = await getAuthSession(request);
+  const sessionId = authSession.get('sessionId');
+
+  if (!sessionId) return null;
+
+  const session = await db.session.findUnique({
+    select: { user: true },
+    where: { id: sessionId, expirationDate: { gt: new Date() } },
+  });
+
+  return session?.user || null;
+}
+
+/**
+ * Ensures no logged-in user
+ *
+ * @param request Request object
+ */
+export async function requireAnonymous(request: Request) {
+  const user = await getOptionalUser(request);
+  if (user) throw redirect('/');
+}
+
+/**
+ * Ensures logged-in user is admin
+ *
+ * @param request Request object
  */
 export async function requireAdmin(request: Request) {
-  throw redirect('/login');
+  const user = await getOptionalUser(request);
+  if (!user?.role.includes('ADMIN')) {
+    throw redirect('/login');
+  }
 }

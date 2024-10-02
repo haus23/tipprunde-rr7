@@ -1,10 +1,20 @@
-import { type ActionFunctionArgs, Form, useActionData } from 'react-router';
-import { signup } from '#/utils/.server/auth';
+import {
+  type ActionFunctionArgs,
+  Form,
+  type LoaderFunctionArgs,
+  useActionData,
+} from 'react-router';
+import { requireAnonymous, signup } from '#/utils/.server/auth';
 
 export const meta = [
   { title: 'Log In - runde.tips' },
   { name: 'description', value: 'Benutzeranmeldung zur Haus23 Tipprunde' },
 ];
+
+export const loader = async ({ request }: LoaderFunctionArgs) => {
+  await requireAnonymous(request);
+  return null;
+};
 
 export const action = async ({ request }: ActionFunctionArgs) => {
   return await signup(request);

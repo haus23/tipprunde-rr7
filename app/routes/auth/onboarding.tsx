@@ -6,7 +6,11 @@ import {
   useActionData,
 } from 'react-router';
 
-import { ensureOnboardingSession, login } from '#/utils/.server/auth';
+import {
+  ensureOnboardingSession,
+  login,
+  requireAnonymous,
+} from '#/utils/.server/auth';
 
 export const meta = [
   { title: 'Log In Code Eingabe - runde.tips' },
@@ -14,6 +18,7 @@ export const meta = [
 ];
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
+  await requireAnonymous(request);
   return await ensureOnboardingSession(request);
 };
 
