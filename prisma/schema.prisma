@@ -14,3 +14,16 @@ model User {
   email String? @unique
   role  String
 }
+
+model Verification {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+
+  email     String   @unique
+  secret    String
+  algorithm String
+  digits    Int
+  period    Int
+  charSet   String
+  expiresAt DateTime
+}
