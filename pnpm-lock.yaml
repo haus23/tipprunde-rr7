@@ -38,6 +38,9 @@ importers:
       react-router:
         specifier: 0.0.0-nightly-12c37f0f0-20240928
         version: 0.0.0-nightly-12c37f0f0-20240928(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      tailwind-variants:
+        specifier: ^0.2.1
+        version: 0.2.1(tailwindcss@4.0.0-alpha.25)
     devDependencies:
       '@biomejs/biome':
         specifier: 1.9.2
@@ -1930,6 +1933,15 @@ packages:
   supports-color@7.2.0:
     resolution: {integrity: sha512-qpCAvRl9stuOHveKsn7HncJRvv501qIacKzQlO/+Lwxc9+0q2wLyv4Dfvt80/DPn2pqOBsJdDiogXGR9+OvwRw==}
     engines: {node: '>=8'}
+
+  tailwind-merge@2.5.2:
+    resolution: {integrity: sha512-kjEBm+pvD+6eAwzJL2Bi+02/9LFLal1Gs61+QB7HvTfQQ0aXwC5LGT8PEt1gS0CWKktKe6ysPTAy3cBC5MeiIg==}
+
+  tailwind-variants@0.2.1:
+    resolution: {integrity: sha512-2xmhAf4UIc3PijOUcJPA1LP4AbxhpcHuHM2C26xM0k81r0maAO6uoUSHl3APmvHZcY5cZCY/bYuJdfFa4eGoaw==}
+    engines: {node: '>=16.x', pnpm: '>=7.x'}
+    peerDependencies:
+      tailwindcss: '*'
 
   tailwindcss@4.0.0-alpha.25:
     resolution: {integrity: sha512-nysTVicWw8JC06+EAJvT8+4RAV7qZpuKwz0QOpfL88/+XKG+HIrawSz5XxXigF48l37ehZfREbqGiS7cCN90jg==}
@@ -4194,6 +4206,13 @@ snapshots:
   supports-color@7.2.0:
     dependencies:
       has-flag: 4.0.0
+
+  tailwind-merge@2.5.2: {}
+
+  tailwind-variants@0.2.1(tailwindcss@4.0.0-alpha.25):
+    dependencies:
+      tailwind-merge: 2.5.2
+      tailwindcss: 4.0.0-alpha.25
 
   tailwindcss@4.0.0-alpha.25: {}
 
