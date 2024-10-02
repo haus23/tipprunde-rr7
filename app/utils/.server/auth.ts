@@ -3,7 +3,11 @@ import { redirect } from 'react-router';
 
 import { db } from './db';
 import { sendMail } from './email';
-import { commitAuthSession, getAuthSession } from './sessions';
+import {
+  commitAuthSession,
+  destroyAuthSession,
+  getAuthSession,
+} from './sessions';
 
 // Default max. session duration - if not without expiration
 export const SESSION_EXPIRATION_TIME = 60 * 60 * 24 * 30; // 30 days
@@ -212,6 +216,32 @@ export async function login(request: Request) {
   throw redirect('/', {
     headers: {
       'Set-Cookie': await commitAuthSession(session),
+    },
+  });
+}
+
+/**
+ * Performs user logout
+ *
+ * @param request Request object
+ * @param options FallbackUrl in case we can't get a referer
+ */
+export async function logout(
+  request: Request,
+  options: { fallbackUrl: string },
+) {
+  const redirectUrl = request.headers.get('Referer') || options.fallbackUrl;
+
+  const session = await getAuthSession(request);
+  const sessionId = session.get('sessionId');
+
+  if (sessionId) {
+    await db.session.deleteMany({ where: { id: sessionId } });
+  }
+
+  throw redirect(redirectUrl, {
+    headers: {
+      'Set-Cookie': await destroyAuthSession(session),
     },
   });
 }
