@@ -1,4 +1,4 @@
-import { Form, type LoaderFunctionArgs, useActionData } from 'react-router';
+import { type ActionFunctionArgs, Form, useActionData } from 'react-router';
 import { signup } from '#/utils/.server/auth';
 
 export const meta = [
@@ -6,7 +6,7 @@ export const meta = [
   { name: 'description', value: 'Benutzeranmeldung zur Haus23 Tipprunde' },
 ];
 
-export const action = async ({ request }: LoaderFunctionArgs) => {
+export const action = async ({ request }: ActionFunctionArgs) => {
   return await signup(request);
 };
 
