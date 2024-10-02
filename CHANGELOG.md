@@ -1,6 +1,36 @@
 # Changelog
 
 
+## v0.1.0
+
+[compare changes](https://github.com/haus23/tipprunde/compare/v0.0.2...v0.1.0)
+
+### 🚀 Enhancements
+
+- Add user model. ([27d09e1](https://github.com/haus23/tipprunde/commit/27d09e1))
+- Add firebase-admin dep and create user seed script. ([1fb9601](https://github.com/haus23/tipprunde/commit/1fb9601))
+- Add simple auth flow forms. ([b38f81a](https://github.com/haus23/tipprunde/commit/b38f81a))
+- Validate email address. ([ec3fb01](https://github.com/haus23/tipprunde/commit/ec3fb01))
+- Implement sending emails. ([e6c1ccd](https://github.com/haus23/tipprunde/commit/e6c1ccd))
+- Generate code and send it to user. ([1fe85e4](https://github.com/haus23/tipprunde/commit/1fe85e4))
+- Create onboarding session and validate code. ([c673f5c](https://github.com/haus23/tipprunde/commit/c673f5c))
+- Create app session after successful login. ([d43cab7](https://github.com/haus23/tipprunde/commit/d43cab7))
+- Add route guards. ([3dfa930](https://github.com/haus23/tipprunde/commit/3dfa930))
+
+### 🩹 Fixes
+
+- Wrong type. ([d843c7b](https://github.com/haus23/tipprunde/commit/d843c7b))
+- Change id generation method. ([983e60a](https://github.com/haus23/tipprunde/commit/983e60a))
+
+### 🏡 Chore
+
+- Install prisma orm tool. ([19a4185](https://github.com/haus23/tipprunde/commit/19a4185))
+- Clean up tsconfig. ([705c947](https://github.com/haus23/tipprunde/commit/705c947))
+
+### ❤️ Contributors
+
+- Micha <micha@haus23.net>
+
 ## v0.0.2
 
 [compare changes](https://github.com/haus23/tipprunde/compare/v0.0.1...v0.0.2)

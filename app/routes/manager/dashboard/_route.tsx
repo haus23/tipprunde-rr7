@@ -8,6 +8,7 @@ export const meta = [
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   await requireAdmin(request);
+  return null;
 };
 
 export default function DashboardRoute() {

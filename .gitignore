@@ -1,5 +1,9 @@
-node_modules
+# NPM deps
+node_modules/
 
-/.cache
-/build
+# Development
 .env
+prisma/*.db
+
+# Production build
+build/
