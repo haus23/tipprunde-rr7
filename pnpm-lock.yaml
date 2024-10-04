@@ -9,7 +9,7 @@ importers:
   .:
     dependencies:
       '@epic-web/totp':
-        specifier: ^2.0.0
+        specifier: ~2.0.0
         version: 2.0.0
       '@prisma/client':
         specifier: ~5.20.0
@@ -24,8 +24,8 @@ importers:
         specifier: 4.0.0-alpha.25
         version: 4.0.0-alpha.25(vite@5.4.8(@types/node@20.16.10)(lightningcss@1.27.0))
       firebase-admin:
-        specifier: ^12.5.0
-        version: 12.5.0
+        specifier: ~12.6.0
+        version: 12.6.0
       isbot:
         specifier: ~5.1.17
         version: 5.1.17
@@ -33,7 +33,7 @@ importers:
         specifier: ~18.3.1
         version: 18.3.1
       react-aria-components:
-        specifier: ^1.4.0
+        specifier: ~1.4.0
         version: 1.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-dom:
         specifier: ~18.3.1
@@ -42,7 +42,7 @@ importers:
         specifier: 0.0.0-nightly-12c37f0f0-20240928
         version: 0.0.0-nightly-12c37f0f0-20240928(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       tailwind-variants:
-        specifier: ^0.2.1
+        specifier: 0.2.1
         version: 0.2.1(tailwindcss@4.0.0-alpha.25)
     devDependencies:
       '@biomejs/biome':
@@ -1755,8 +1755,8 @@ packages:
     resolution: {integrity: sha512-6BN9trH7bp3qvnrRyzsBz+g3lZxTNZTbVO2EV1CS0WIcDbawYVdYvGflME/9QP0h0pYlCDBCTjYa9nZzMDpyxQ==}
     engines: {node: '>= 0.8'}
 
-  firebase-admin@12.5.0:
-    resolution: {integrity: sha512-ad8vnlPcuuZN9scSgY8UnAxPI4mzP2/Q+dsrVLTf+j3h7bIq0FOelDCDGz4StgKJdk244v2kpOxqJjPG3grBHg==}
+  firebase-admin@12.6.0:
+    resolution: {integrity: sha512-gc0pDiUmxscxBhcjMcttmjvExJmnQdVRb+IIth95CvMm7F9rLdabrQZThW2mK02HR696P+rzd6NqkdUA3URu4w==}
     engines: {node: '>=14'}
 
   foreground-child@3.3.0:
@@ -5002,7 +5002,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  firebase-admin@12.5.0:
+  firebase-admin@12.6.0:
     dependencies:
       '@fastify/busboy': 3.0.0
       '@firebase/database-compat': 1.0.8
