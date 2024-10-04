@@ -1,12 +1,12 @@
 import {
   Links,
-  type LoaderFunctionArgs,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
   data,
 } from 'react-router';
+import type * as Route from './+types.root';
 
 import { getUser } from './utils/.server/auth';
 import { combineHeaders } from './utils/misc';
@@ -14,7 +14,7 @@ import { combineHeaders } from './utils/misc';
 import './app.css';
 import { UIProvider } from './components/ui';
 
-export const loader = async ({ request }: LoaderFunctionArgs) => {
+export const loader = async ({ request }: Route.LoaderArgs) => {
   const { user, headers: authHeaders } = await getUser(request);
 
   return data({ user }, { headers: combineHeaders(authHeaders) });

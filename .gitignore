@@ -2,6 +2,7 @@
 node_modules/
 
 # Development
+.react-router/
 .env
 prisma/*.db
 

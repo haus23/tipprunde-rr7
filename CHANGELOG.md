@@ -1,6 +1,28 @@
 # Changelog
 
 
+## v0.2.0
+
+[compare changes](https://github.com/haus23/tipprunde/compare/v0.1.1...v0.2.0)
+
+### 💅 Refactors
+
+- Adapt template changes. ([08c525b](https://github.com/haus23/tipprunde/commit/08c525b))
+- Use new typing system. ([fd6da10](https://github.com/haus23/tipprunde/commit/fd6da10))
+
+### 🏡 Chore
+
+- Update pnpm. ([5717e27](https://github.com/haus23/tipprunde/commit/5717e27))
+- Patch update dev deps. ([cb2f436](https://github.com/haus23/tipprunde/commit/cb2f436))
+- Update biome. ([c8e47dd](https://github.com/haus23/tipprunde/commit/c8e47dd))
+- Update firebase admin. Adjust prod semvers. ([2352b70](https://github.com/haus23/tipprunde/commit/2352b70))
+- Update tailwind alpha ([428cd5b](https://github.com/haus23/tipprunde/commit/428cd5b))
+- Switch to RR7 pre release. ([b3a44d2](https://github.com/haus23/tipprunde/commit/b3a44d2))
+
+### ❤️ Contributors
+
+- Micha <micha@haus23.net>
+
 ## v0.1.1
 
 [compare changes](https://github.com/haus23/tipprunde/compare/v0.1.0...v0.1.1)
