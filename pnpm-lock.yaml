@@ -55,8 +55,8 @@ importers:
         specifier: ~20.16.10
         version: 20.16.10
       '@types/react':
-        specifier: ~18.3.9
-        version: 18.3.10
+        specifier: ~18.3.11
+        version: 18.3.11
       '@types/react-dom':
         specifier: ~18.3.0
         version: 18.3.0
@@ -70,7 +70,7 @@ importers:
         specifier: ~5.6.2
         version: 5.6.2
       vite:
-        specifier: ^5.4.7
+        specifier: ^5.4.8
         version: 5.4.8(@types/node@20.16.10)(lightningcss@1.27.0)
       vite-tsconfig-paths:
         specifier: ^5.0.1
@@ -1397,8 +1397,8 @@ packages:
   '@types/react-dom@18.3.0':
     resolution: {integrity: sha512-EhwApuTmMBmXuFOikhQLIBUn6uFg81SwLMOAUgodJF14SOBOCMdU04gDoYi0WOJJHD144TL32z4yDqCW3dnkQg==}
 
-  '@types/react@18.3.10':
-    resolution: {integrity: sha512-02sAAlBnP39JgXwkAq3PeU9DVaaGpZyF3MGcC0MKgQVkZor5IiiDAipVaxQHtDJAmO4GIy/rVBy/LzVj76Cyqg==}
+  '@types/react@18.3.11':
+    resolution: {integrity: sha512-r6QZ069rFTjrEYgFdOck1gK7FLVsgJE7tTz0pQBczlBNUhBNk0MQH4UbnFSwjpQLMkLzgqvBBa+qGpLje16eTQ==}
 
   '@types/request@2.48.12':
     resolution: {integrity: sha512-G3sY+NpsA9jnwm0ixhAFQSJ3Q9JkpLZpJbI3GMv0mIAT0y3mRabYeINzal5WOChIiaTEGQYlHOKgkaM9EisWHw==}
@@ -4581,9 +4581,9 @@ snapshots:
 
   '@types/react-dom@18.3.0':
     dependencies:
-      '@types/react': 18.3.10
+      '@types/react': 18.3.11
 
-  '@types/react@18.3.10':
+  '@types/react@18.3.11':
     dependencies:
       '@types/prop-types': 15.7.13
       csstype: 3.1.3
