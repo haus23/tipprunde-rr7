@@ -1,5 +1,6 @@
-import { Link, Outlet } from 'react-router';
+import { Form, Link, Outlet } from 'react-router';
 import { Logo } from '#/components/logo';
+import { Button } from '#/components/ui';
 
 export default function FohLayout() {
   return (
@@ -8,6 +9,9 @@ export default function FohLayout() {
         <Link to="/">
           <Logo />
         </Link>
+        <Form action="/logout" method="post">
+          <Button type="submit">Log Out</Button>
+        </Form>
       </header>
       <main className="pl-2 mt-2.5">
         <Outlet />
