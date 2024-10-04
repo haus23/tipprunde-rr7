@@ -1,5 +1,10 @@
 {
-  "include": ["app", "app/**/.server/**/*.ts", "app/**/.server/**/*.tsx"],
+  "include": [
+    "app",
+    "app/**/.server/**/*.ts",
+    "app/**/.server/**/*.tsx",
+    ".react-router/types/**/*"
+  ],
   "compilerOptions": {
     // Source
     "strict": true,
@@ -18,6 +23,10 @@
     // TSC
     "skipLibCheck": true,
     "noEmit": true,
+
+    // React Router
+    "rootDirs": [".", "./.react-router/types"],
+    "plugins": [{ "name": "@react-router/dev" }],
 
     // DX
     "paths": {

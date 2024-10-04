@@ -19,7 +19,7 @@
     "dev": "react-router dev",
     "build": "react-router build",
     "start": "react-router-serve ./build/server/index.js",
-    "typecheck": "tsc"
+    "typecheck": "react-router typegen && tsc"
   },
   "dependencies": {
     "@epic-web/totp": "~2.0.0",
