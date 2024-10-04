@@ -1,6 +1,36 @@
 # Changelog
 
 
+## v0.1.1
+
+[compare changes](https://github.com/haus23/tipprunde/compare/v0.1.0...v0.1.1)
+
+### 🚀 Enhancements
+
+- Add logout server code. ([a81c545](https://github.com/haus23/tipprunde/commit/a81c545))
+- Add logout route. Should be an action. ([1810f09](https://github.com/haus23/tipprunde/commit/1810f09))
+- Load valid user from session in root loader. ([eff3a9f](https://github.com/haus23/tipprunde/commit/eff3a9f))
+- Use loader data to get authenticated state in client. ([be05df8](https://github.com/haus23/tipprunde/commit/be05df8))
+- Add first app color ([38ee833](https://github.com/haus23/tipprunde/commit/38ee833))
+- Add a simple user menu. ([eccc731](https://github.com/haus23/tipprunde/commit/eccc731))
+
+### 🩹 Fixes
+
+- Integrate rac client routing with remix. ([7d04eb3](https://github.com/haus23/tipprunde/commit/7d04eb3))
+
+### 💅 Refactors
+
+- Move logout into action. ([c6aa36b](https://github.com/haus23/tipprunde/commit/c6aa36b))
+
+### 🏡 Chore
+
+- Add tailwind-variants and provide a wrapper for future customizations. ([e71fcb8](https://github.com/haus23/tipprunde/commit/e71fcb8))
+- Add react-aria-components. ([099f3d0](https://github.com/haus23/tipprunde/commit/099f3d0))
+
+### ❤️ Contributors
+
+- Micha <micha@haus23.net>
+
 ## v0.1.0
 
 [compare changes](https://github.com/haus23/tipprunde/compare/v0.0.2...v0.1.0)

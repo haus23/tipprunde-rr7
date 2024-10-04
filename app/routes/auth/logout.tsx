@@ -1,8 +1,12 @@
-import type { LoaderFunctionArgs } from 'react-router';
+import { type ActionFunctionArgs, redirect } from 'react-router';
 
 import { logout } from '#/utils/.server/auth';
 
-export const loader = async ({ request }: LoaderFunctionArgs) => {
+export const loader = async () => {
+  throw redirect('/');
+};
+
+export const action = async ({ request }: ActionFunctionArgs) => {
   const referer = request.headers.get('Referer');
 
   // Do not stay in manager area after logout (would be redirected anyway)
