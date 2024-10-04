@@ -1,4 +1,5 @@
-import { type ActionFunctionArgs, redirect } from 'react-router';
+import { redirect } from 'react-router';
+import type * as Route from './+types.logout';
 
 import { logout } from '#/utils/.server/auth';
 
@@ -6,7 +7,7 @@ export const loader = async () => {
   throw redirect('/');
 };
 
-export const action = async ({ request }: ActionFunctionArgs) => {
+export const action = async ({ request }: Route.ActionArgs) => {
   const referer = request.headers.get('Referer');
 
   // Do not stay in manager area after logout (would be redirected anyway)

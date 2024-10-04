@@ -5,6 +5,7 @@ import {
   type LoaderFunctionArgs,
   useActionData,
 } from 'react-router';
+import type * as Route from './+types.onboarding';
 
 import {
   ensureOnboardingSession,
@@ -17,20 +18,16 @@ export const meta = [
   { name: 'description', value: 'Benutzeranmeldung zur Haus23 Tipprunde' },
 ];
 
-export const loader = async ({ request }: LoaderFunctionArgs) => {
+export const loader = async ({ request }: Route.LoaderArgs) => {
   await requireAnonymous(request);
   return await ensureOnboardingSession(request);
 };
 
-export const action = async ({ request }: ActionFunctionArgs) => {
+export const action = async ({ request }: Route.ActionArgs) => {
   return await login(request);
 };
 
-export default function OnboardingRoute() {
-  const actionData = useActionData() as Awaited<
-    ReturnType<typeof action>
-  > | null;
-
+export default function OnboardingRoute({ actionData }: Route.ComponentProps) {
   return (
     <div>
       <h1 className="text-2xl">Code Eingabe</h1>

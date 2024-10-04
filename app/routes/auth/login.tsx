@@ -1,9 +1,6 @@
-import {
-  type ActionFunctionArgs,
-  Form,
-  type LoaderFunctionArgs,
-  useActionData,
-} from 'react-router';
+import { Form } from 'react-router';
+import type * as Route from './+types.login';
+
 import { requireAnonymous, signup } from '#/utils/.server/auth';
 
 export const meta = [
@@ -11,20 +8,16 @@ export const meta = [
   { name: 'description', value: 'Benutzeranmeldung zur Haus23 Tipprunde' },
 ];
 
-export const loader = async ({ request }: LoaderFunctionArgs) => {
+export const loader = async ({ request }: Route.LoaderArgs) => {
   await requireAnonymous(request);
   return null;
 };
 
-export const action = async ({ request }: ActionFunctionArgs) => {
+export const action = async ({ request }: Route.ActionArgs) => {
   return await signup(request);
 };
 
-export default function LoginRoute() {
-  const actionData = useActionData() as Awaited<
-    ReturnType<typeof action>
-  > | null;
-
+export default function LoginRoute({ actionData }: Route.ComponentProps) {
   return (
     <div>
       <h1 className="text-2xl">Log In</h1>
