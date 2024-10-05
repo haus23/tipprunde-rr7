@@ -13,7 +13,8 @@ import {
 } from './sessions';
 
 // Default max. session duration - if not without expiration
-export const SESSION_EXPIRATION_TIME = 60 * 60 * 24 * 30; // 30 days
+const SESSION_EXPIRATION_TIME = 60 * 60 * 24 * 30; // 30 days
+const MAX_ATTEMPTS = 3; // Max attempts to enter a code
 
 /**
  * Gets user by email address
@@ -82,8 +83,26 @@ async function createLoginCode(email: string) {
   const expiresAt = new Date(Date.now() + period * 1000);
   await db.verification.upsert({
     where: { email },
-    create: { email, secret, period, algorithm, digits, charSet, expiresAt },
-    update: { email, secret, period, algorithm, digits, charSet, expiresAt },
+    create: {
+      email,
+      secret,
+      period,
+      algorithm,
+      digits,
+      charSet,
+      expiresAt,
+      attempts: 0,
+    },
+    update: {
+      email,
+      secret,
+      period,
+      algorithm,
+      digits,
+      charSet,
+      expiresAt,
+      attempts: 0,
+    },
   });
   return otp;
 }
@@ -98,13 +117,16 @@ async function createLoginCode(email: string) {
 async function verifyLoginCode(
   email: string,
   code: string,
-): Promise<{ success: true } | { success: false; error: string }> {
+): Promise<
+  { success: true } | { success: false; retry: boolean; error: string }
+> {
   const verificationData = await db.verification.findFirst({
     where: { email },
   });
   if (!verificationData) {
     return {
       success: false,
+      retry: false,
       error: 'Keine Code für diese Email-Adresse vorhanden!',
     };
   }
@@ -112,13 +134,30 @@ async function verifyLoginCode(
   if (new Date() > verificationData.expiresAt) {
     return {
       success: false,
+      retry: false,
       error: 'Code ist abgelaufen. Codes sind nur fünf Minuten gültig.',
     };
   }
 
   const isValid = await verifyTOTP({ otp: code, ...verificationData });
   if (isValid === null) {
-    return { success: false, error: 'Falscher Code.' };
+    const attempts = verificationData.attempts + 1;
+    if (attempts < MAX_ATTEMPTS) {
+      await db.verification.update({
+        where: { id: verificationData.id },
+        data: { attempts },
+      });
+      return {
+        success: false,
+        retry: true,
+        error: `Falscher Code. Noch ${MAX_ATTEMPTS - attempts === 2 ? 'zwei' : 'ein'} Versuch übrig.`,
+      };
+    }
+    return {
+      success: false,
+      retry: false,
+      error: 'Zu viele falsche Versuche.',
+    };
   }
   return { success: true };
 }
