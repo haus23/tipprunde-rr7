@@ -13,6 +13,7 @@ import { combineHeaders } from './utils/misc';
 
 import './app.css';
 import { UIProvider } from './components/ui';
+import { useAuthBroadcast } from './utils/auth';
 
 export const loader = async ({ request }: Route.LoaderArgs) => {
   const { user, headers: authHeaders } = await getUser(request);
@@ -39,5 +40,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
+  useAuthBroadcast();
+
   return <Outlet />;
 }

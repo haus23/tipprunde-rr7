@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v0.2.4
+
+[compare changes](https://github.com/haus23/tipprunde/compare/v0.2.3...v0.2.4)
+
+### 🚀 Enhancements
+
+- Sync auth state across all tabs. ([86c831d](https://github.com/haus23/tipprunde/commit/86c831d))
+
+### 💅 Refactors
+
+- Clean up server auth. Resolves #7 ([#7](https://github.com/haus23/tipprunde/issues/7))
+
+### ❤️ Contributors
+
+- Micha <micha@haus23.net>
+
 ## v0.2.3
 
 [compare changes](https://github.com/haus23/tipprunde/compare/v0.2.2...v0.2.3)
