@@ -1,10 +1,4 @@
-import {
-  type ActionFunctionArgs,
-  Form,
-  Link,
-  type LoaderFunctionArgs,
-  useActionData,
-} from 'react-router';
+import { Form, Link } from 'react-router';
 import type * as Route from './+types.onboarding';
 
 import {
@@ -27,7 +21,11 @@ export const action = async ({ request }: Route.ActionArgs) => {
   return await login(request);
 };
 
-export default function OnboardingRoute({ actionData }: Route.ComponentProps) {
+export default function OnboardingRoute({
+  loaderData,
+  actionData,
+}: Route.ComponentProps) {
+  const error = actionData?.error || loaderData.error;
   return (
     <div>
       <h1 className="text-2xl">Code Eingabe</h1>
@@ -46,9 +44,9 @@ export default function OnboardingRoute({ actionData }: Route.ComponentProps) {
             pattern="\d{6}"
           />
         </div>
-        {actionData?.errors && (
+        {error && (
           <div>
-            {actionData.errors.code} <Link to="/login">Zurück zum Login</Link>
+            {error} <Link to="/login">Zurück zum Login</Link>
           </div>
         )}
         <button type="submit">Prüfen</button>

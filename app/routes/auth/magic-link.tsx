@@ -1,4 +1,3 @@
-import { redirect } from 'react-router';
 import type * as Route from './+types.magic-link';
 
 import {
@@ -10,7 +9,5 @@ import {
 export const loader = async ({ request }: Route.LoaderArgs) => {
   await requireAnonymous(request);
   await ensureOnboardingSession(request);
-  const error = await login(request);
-
-  throw redirect('/login');
+  await login(request, { withMagicLink: true });
 };

@@ -42,4 +42,5 @@ model Verification {
   period    Int
   charSet   String
   expiresAt DateTime
+  attempts  Int      @default(0)
 }
