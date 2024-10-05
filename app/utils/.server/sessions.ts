@@ -2,11 +2,12 @@ import { createCookie, createCookieSessionStorage } from 'react-router';
 
 type AuthSessionData = {
   sessionId: string;
+  email: string;
+  rememberMe: boolean;
 };
 
 type AuthSessionFlashData = {
-  email: string;
-  rememberMe: boolean;
+  error: string;
 };
 
 export const authCookie = createCookie('__auth', {
