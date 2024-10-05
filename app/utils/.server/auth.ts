@@ -48,8 +48,10 @@ async function sendCodeMail(props: {
   userName: string;
   code: string;
   email: string;
+  magicLink: string;
 }) {
-  const { userName, code, email } = props;
+  const { userName, code, email, magicLink } = props;
+
   await sendMail(
     {
       from: 'Tipprunde <hallo@runde.tips>',
@@ -58,7 +60,9 @@ async function sendCodeMail(props: {
       category: 'totp',
       text: `
       Hallo ${userName}!
-      Dein Login-Code ist: ${code}`,
+      Dein Login-Code ist: ${code}
+      Du kannst dich auch per Link anmelden: ${magicLink}
+      `,
     },
     'Postmark',
   );
@@ -144,7 +148,13 @@ export async function signup(request: Request) {
   }
 
   const code = await createLoginCode(email);
-  await sendCodeMail({ userName: user.name, code, email });
+
+  // Generate Magic Link
+  const url = new URL('/magic-link', new URL(request.url).origin);
+  url.searchParams.set('code', code);
+  const magicLink = url.toString();
+
+  await sendCodeMail({ userName: user.name, code, email, magicLink });
 
   const session = await getAuthSession(request);
   session.flash('email', email);
@@ -198,8 +208,15 @@ export async function login(request: Request) {
   const user = await getUserByEmail(email);
   if (!user) throw Error('Netter Versuch!');
 
-  const formData = await request.formData();
-  const code = String(formData.get('code'));
+  let code = '';
+
+  if (request.method === 'POST') {
+    const formData = await request.formData();
+    code = String(formData.get('code'));
+  } else if (request.method === 'GET') {
+    const url = new URL(request.url);
+    code = decodeURIComponent(url.searchParams.get('code') ?? '');
+  }
 
   // Verify code
   const verifyResult = await verifyLoginCode(email, code);

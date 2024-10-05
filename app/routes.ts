@@ -6,8 +6,9 @@ export const routes: RouteConfig = [
     index('routes/foh/tables/_route.tsx'),
     // Auth Routes
     route('login', 'routes/auth/login.tsx'),
-    route('onboarding', 'routes/auth/onboarding.tsx'),
     route('logout', 'routes/auth/logout.tsx'),
+    route('magic-link', 'routes/auth/magic-link.tsx'),
+    route('onboarding', 'routes/auth/onboarding.tsx'),
   ]),
   layout('routes/_layouts/manager-layout.tsx', [
     route('manager', 'routes/manager/dashboard/_route.tsx'),
