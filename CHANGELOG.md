@@ -1,6 +1,23 @@
 # Changelog
 
 
+## v0.2.2
+
+[compare changes](https://github.com/haus23/tipprunde/compare/v0.2.1...v0.2.2)
+
+### 🚀 Enhancements
+
+- Add magic-link route. ([0fb6859](https://github.com/haus23/tipprunde/commit/0fb6859))
+
+### 💅 Refactors
+
+- Get code from query string on get requests. ([bb31c97](https://github.com/haus23/tipprunde/commit/bb31c97))
+- Create magic link and send it via code email. ([2b13ae9](https://github.com/haus23/tipprunde/commit/2b13ae9))
+
+### ❤️ Contributors
+
+- Micha <micha@haus23.net>
+
 ## v0.2.1
 
 [compare changes](https://github.com/haus23/tipprunde/compare/v0.2.0...v0.2.1)
