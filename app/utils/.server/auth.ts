@@ -198,8 +198,15 @@ export async function login(request: Request) {
   const user = await getUserByEmail(email);
   if (!user) throw Error('Netter Versuch!');
 
-  const formData = await request.formData();
-  const code = String(formData.get('code'));
+  let code = '';
+
+  if (request.method === 'POST') {
+    const formData = await request.formData();
+    code = String(formData.get('code'));
+  } else if (request.method === 'GET') {
+    const url = new URL(request.url);
+    code = decodeURIComponent(url.searchParams.get('code') ?? '');
+  }
 
   // Verify code
   const verifyResult = await verifyLoginCode(email, code);
