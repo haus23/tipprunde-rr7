@@ -14,7 +14,7 @@ import {
 
 // Default max. session duration - if not without expiration
 const SESSION_EXPIRATION_TIME = 60 * 60 * 24 * 30; // 30 days
-const MAX_ATTEMPTS = 3; // Max attempts to enter a code
+const MAX_ATTEMPTS = 5; // Max attempts to enter a code
 
 /**
  * Gets user by email address
@@ -142,6 +142,7 @@ async function verifyLoginCode(
   const isValid = await verifyTOTP({ otp: code, ...verificationData });
   if (isValid === null) {
     const attempts = verificationData.attempts + 1;
+    const remainingAttempts = MAX_ATTEMPTS - attempts;
     if (attempts < MAX_ATTEMPTS) {
       await db.verification.update({
         where: { id: verificationData.id },
@@ -150,7 +151,7 @@ async function verifyLoginCode(
       return {
         success: false,
         retry: true,
-        error: `Falscher Code. Noch ${MAX_ATTEMPTS - attempts === 2 ? 'zwei' : 'ein'} Versuch übrig.`,
+        error: `Falscher Code. Noch ${remainingAttempts === 1 ? 'ein letzter Versuch' : `${remainingAttempts} Versuche`} übrig.`,
       };
     }
     return {
@@ -196,8 +197,8 @@ export async function signup(request: Request) {
   await sendCodeMail({ userName: user.name, code, email, magicLink });
 
   const session = await getAuthSession(request);
-  session.flash('email', email);
-  session.flash('rememberMe', rememberMe);
+  session.set('email', email);
+  session.set('rememberMe', rememberMe);
 
   throw redirect('/onboarding', {
     headers: {
@@ -224,7 +225,7 @@ export async function ensureOnboardingSession(request: Request) {
   const user = await getUserByEmail(email);
   if (!user) throw Error('Netter Versuch!');
 
-  return null;
+  return { error: session.get('error') };
 }
 
 /**
@@ -235,7 +236,12 @@ export async function ensureOnboardingSession(request: Request) {
  *
  * @param request Request object
  */
-export async function login(request: Request) {
+export async function login(
+  request: Request,
+  options?: { withMagicLink: boolean },
+) {
+  const withMagicLink = options?.withMagicLink || false;
+
   const session = await getAuthSession(request);
   const email = session.get('email');
   const rememberMe = session.get('rememberMe') ?? false;
@@ -249,18 +255,27 @@ export async function login(request: Request) {
 
   let code = '';
 
-  if (request.method === 'POST') {
-    const formData = await request.formData();
-    code = String(formData.get('code'));
-  } else if (request.method === 'GET') {
+  if (withMagicLink) {
     const url = new URL(request.url);
     code = decodeURIComponent(url.searchParams.get('code') ?? '');
+  } else {
+    const formData = await request.formData();
+    code = String(formData.get('code'));
   }
 
   // Verify code
   const verifyResult = await verifyLoginCode(email, code);
   if (!verifyResult.success) {
-    return { errors: { code: verifyResult.error } };
+    if (!verifyResult.retry) {
+      throw redirect('/login');
+    }
+    if (withMagicLink) {
+      session.flash('error', verifyResult.error);
+      throw redirect('/onboarding', {
+        headers: { 'Set-Cookie': await commitAuthSession(session) },
+      });
+    }
+    return { error: verifyResult.error };
   }
 
   // Create app session
@@ -277,6 +292,9 @@ export async function login(request: Request) {
   });
 
   session.set('sessionId', sessionData.id);
+  session.unset('rememberMe');
+  session.unset('email');
+
   throw redirect('/', {
     headers: {
       'Set-Cookie': await commitAuthSession(session, {
