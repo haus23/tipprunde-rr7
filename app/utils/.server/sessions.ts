@@ -6,6 +6,7 @@ type AuthSessionData = {
 
 type AuthSessionFlashData = {
   email: string;
+  rememberMe: boolean;
 };
 
 const authSessionStorage = createCookieSessionStorage<

@@ -129,6 +129,7 @@ async function verifyLoginCode(
 export async function signup(request: Request) {
   const formData = await request.formData();
   const email = String(formData.get('email'));
+  const rememberMe = String(formData.get('rememberMe')) === 'on';
 
   const user = await getUserByEmail(email);
   if (!user) {
@@ -146,6 +147,7 @@ export async function signup(request: Request) {
 
   const session = await getAuthSession(request);
   session.flash('email', email);
+  session.flash('rememberMe', rememberMe);
 
   throw redirect('/onboarding', {
     headers: {
@@ -186,6 +188,7 @@ export async function ensureOnboardingSession(request: Request) {
 export async function login(request: Request) {
   const session = await getAuthSession(request);
   const email = session.get('email');
+  const rememberMe = session.get('rememberMe') ?? false;
 
   if (!email) {
     throw redirect('/login');
@@ -204,12 +207,14 @@ export async function login(request: Request) {
   }
 
   // Create app session
+  // Expiration date is always 30 days. With rememberMe set, we will prolong the
+  // cookie maxAge date and the expirationDate in the DB
   const expirationDate = new Date(Date.now() + SESSION_EXPIRATION_TIME * 1000);
   const sessionData = await db.session.create({
     select: { id: true },
     data: {
       userId: user.id,
-      expires: true,
+      expires: !rememberMe,
       expirationDate,
     },
   });
@@ -217,7 +222,9 @@ export async function login(request: Request) {
   session.set('sessionId', sessionData.id);
   throw redirect('/', {
     headers: {
-      'Set-Cookie': await commitAuthSession(session),
+      'Set-Cookie': await commitAuthSession(session, {
+        ...(rememberMe && { maxAge: SESSION_EXPIRATION_TIME }),
+      }),
     },
   });
 }

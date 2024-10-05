@@ -26,6 +26,10 @@ export default function LoginRoute({ actionData }: Route.ComponentProps) {
           <label htmlFor="email">E-Mail:</label>
           <input id="email" type="email" name="email" required />
         </div>
+        <div className="flex gap-x-2">
+          <input id="remember-me" type="checkbox" name="rememberMe" />
+          <label htmlFor="remember-me">Angemeldet bleiben</label>
+        </div>
         {actionData?.errors && <div>{actionData.errors.email}</div>}
         <button type="submit">Code anfordern</button>
       </Form>
