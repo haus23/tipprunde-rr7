@@ -1,4 +1,4 @@
-import { createCookieSessionStorage } from 'react-router';
+import { createCookie, createCookieSessionStorage } from 'react-router';
 
 type AuthSessionData = {
   sessionId: string;
@@ -6,20 +6,22 @@ type AuthSessionData = {
 
 type AuthSessionFlashData = {
   email: string;
+  rememberMe: boolean;
 };
+
+export const authCookie = createCookie('__auth', {
+  sameSite: 'lax',
+  path: '/',
+  httpOnly: true,
+  secrets: [String(process.env.SESSION_SECRET)],
+  secure: process.env.NODE_ENV === 'production',
+});
 
 const authSessionStorage = createCookieSessionStorage<
   AuthSessionData,
   AuthSessionFlashData
 >({
-  cookie: {
-    name: '__auth',
-    sameSite: 'lax',
-    path: '/',
-    httpOnly: true,
-    secrets: [String(process.env.SESSION_SECRET)],
-    secure: process.env.NODE_ENV === 'production',
-  },
+  cookie: authCookie,
 });
 const authSession = {
   commitAuthSession: authSessionStorage.commitSession,

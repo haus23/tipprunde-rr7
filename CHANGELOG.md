@@ -1,6 +1,27 @@
 # Changelog
 
 
+## v0.2.1
+
+[compare changes](https://github.com/haus23/tipprunde/compare/v0.2.0...v0.2.1)
+
+### 🚀 Enhancements
+
+- Add remember-me checkbox and create long lasting sessions. ([9cec299](https://github.com/haus23/tipprunde/commit/9cec299))
+- Prolong ongoing rememberMe sessions. ([87a4037](https://github.com/haus23/tipprunde/commit/87a4037))
+
+### 💅 Refactors
+
+- Clean-up revealed files. ([261b7ae](https://github.com/haus23/tipprunde/commit/261b7ae))
+
+### 🏡 Chore
+
+- Reveal entry files. ([a18549e](https://github.com/haus23/tipprunde/commit/a18549e))
+
+### ❤️ Contributors
+
+- Micha <micha@haus23.net>
+
 ## v0.2.0
 
 [compare changes](https://github.com/haus23/tipprunde/compare/v0.1.1...v0.2.0)

@@ -6,6 +6,7 @@ import type { User } from '@prisma/client';
 import { db } from './db';
 import { sendMail } from './email';
 import {
+  authCookie,
   commitAuthSession,
   destroyAuthSession,
   getAuthSession,
@@ -129,6 +130,7 @@ async function verifyLoginCode(
 export async function signup(request: Request) {
   const formData = await request.formData();
   const email = String(formData.get('email'));
+  const rememberMe = String(formData.get('rememberMe')) === 'on';
 
   const user = await getUserByEmail(email);
   if (!user) {
@@ -146,6 +148,7 @@ export async function signup(request: Request) {
 
   const session = await getAuthSession(request);
   session.flash('email', email);
+  session.flash('rememberMe', rememberMe);
 
   throw redirect('/onboarding', {
     headers: {
@@ -186,6 +189,7 @@ export async function ensureOnboardingSession(request: Request) {
 export async function login(request: Request) {
   const session = await getAuthSession(request);
   const email = session.get('email');
+  const rememberMe = session.get('rememberMe') ?? false;
 
   if (!email) {
     throw redirect('/login');
@@ -204,12 +208,14 @@ export async function login(request: Request) {
   }
 
   // Create app session
+  // Expiration date is always 30 days. With rememberMe set, we will prolong the
+  // cookie maxAge date and the expirationDate in the DB
   const expirationDate = new Date(Date.now() + SESSION_EXPIRATION_TIME * 1000);
   const sessionData = await db.session.create({
     select: { id: true },
     data: {
       userId: user.id,
-      expires: true,
+      expires: !rememberMe,
       expirationDate,
     },
   });
@@ -217,7 +223,9 @@ export async function login(request: Request) {
   session.set('sessionId', sessionData.id);
   throw redirect('/', {
     headers: {
-      'Set-Cookie': await commitAuthSession(session),
+      'Set-Cookie': await commitAuthSession(session, {
+        ...(rememberMe && { maxAge: SESSION_EXPIRATION_TIME }),
+      }),
     },
   });
 }
@@ -254,6 +262,46 @@ export async function logout(
 }
 
 // Server auth helpers
+
+/**
+ * Prolongs an eventually ongoing rememberMe-Session
+ *
+ * @param request Request object
+ * @param responseHeaders Response headers
+ */
+export async function prolongRememberMeSession(
+  request: Request,
+  responseHeaders: Headers,
+) {
+  // Is there an ongoing auth cookie set in the headers
+  const cookieBeingSet = await authCookie.parse(
+    responseHeaders.get('Set-Cookie'),
+  );
+  if (cookieBeingSet !== null) return;
+
+  const authSession = await getAuthSession(request);
+  const sessionId = authSession.get('sessionId');
+  if (!sessionId) return;
+
+  const appSession = await db.session.findUnique({
+    where: { id: sessionId, expirationDate: { gt: new Date() } },
+  });
+  if (!appSession || appSession.expires) return;
+
+  await db.session.update({
+    where: { id: appSession.id },
+    data: {
+      ...appSession,
+      updatedAt: new Date(),
+      expirationDate: new Date(Date.now() + SESSION_EXPIRATION_TIME * 1000),
+    },
+  });
+
+  responseHeaders.append(
+    'Set-Cookie',
+    await commitAuthSession(authSession, { maxAge: SESSION_EXPIRATION_TIME }),
+  );
+}
 
 /**
  * Validates app session and returns logged-in user or null.
