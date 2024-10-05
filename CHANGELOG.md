@@ -1,6 +1,28 @@
 # Changelog
 
 
+## v0.2.3
+
+[compare changes](https://github.com/haus23/tipprunde/compare/v0.2.2...v0.2.3)
+
+### 🚀 Enhancements
+
+- Implement max code attempts. ([d4651db](https://github.com/haus23/tipprunde/commit/d4651db))
+
+### 🩹 Fixes
+
+- Using outdated link returns to onboarding page. ([4e09955](https://github.com/haus23/tipprunde/commit/4e09955))
+
+### 💅 Refactors
+
+- Rethink session data. ([c8fe40f](https://github.com/haus23/tipprunde/commit/c8fe40f))
+- Change login and onboarding auth flow. ([b2410a9](https://github.com/haus23/tipprunde/commit/b2410a9))
+- Simplify routes. ([714a5f9](https://github.com/haus23/tipprunde/commit/714a5f9))
+
+### ❤️ Contributors
+
+- Micha <micha@haus23.net>
+
 ## v0.2.2
 
 [compare changes](https://github.com/haus23/tipprunde/compare/v0.2.1...v0.2.2)
