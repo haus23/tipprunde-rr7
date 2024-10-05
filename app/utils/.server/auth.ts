@@ -1,20 +1,18 @@
-import { generateTOTP, verifyTOTP } from '@epic-web/totp';
 import { redirect } from 'react-router';
 
 import type { User } from '@prisma/client';
 
 import { db } from './db';
-import { sendMail } from './email';
+import { sendCodeMail, sendErrorMail } from './emails';
 import {
   authCookie,
   commitAuthSession,
   destroyAuthSession,
   getAuthSession,
 } from './sessions';
+import { createLoginCode, verifyLoginCode } from './totp';
 
-// Default max. session duration - if not without expiration
-const SESSION_EXPIRATION_TIME = 60 * 60 * 24 * 30; // 30 days
-const MAX_ATTEMPTS = 5; // Max attempts to enter a code
+const SESSION_EXPIRATION_TIME = Number(process.env.SESSION_EXPIRATION_TIME);
 
 /**
  * Gets user by email address
@@ -24,143 +22,6 @@ const MAX_ATTEMPTS = 5; // Max attempts to enter a code
  */
 async function getUserByEmail(email: string) {
   return await db.user.findUnique({ where: { email } });
-}
-
-/**
- * Notifies admin about a security breach
- *
- * @param props Subject and email body
- */
-async function sendErrorMail(props: { subject: string; text: string }) {
-  await sendMail({
-    from: 'Tipprunde Security <security@runde.tips>',
-    to: 'Micha <micha@haus23.net>',
-    category: 'security',
-    ...props,
-  });
-}
-
-/**
- * Sends email with login code to user
- *
- * @param props Username, email-address and the login code
- */
-async function sendCodeMail(props: {
-  userName: string;
-  code: string;
-  email: string;
-  magicLink: string;
-}) {
-  const { userName, code, email, magicLink } = props;
-
-  await sendMail(
-    {
-      from: 'Tipprunde <hallo@runde.tips>',
-      to: `${userName} <${email}>`,
-      subject: 'Tipprunde Login Code',
-      category: 'totp',
-      text: `
-      Hallo ${userName}!
-      Dein Login-Code ist: ${code}
-      Du kannst dich auch per Link anmelden: ${magicLink}
-      `,
-    },
-    'Postmark',
-  );
-}
-
-/**
- * Generates and stores TOTP login code.
- *
- * @param email User email the code will be associated with
- * @returns Code
- */
-async function createLoginCode(email: string) {
-  const { otp, secret, period, charSet, digits, algorithm } =
-    await generateTOTP({
-      period: 300,
-    });
-  const expiresAt = new Date(Date.now() + period * 1000);
-  await db.verification.upsert({
-    where: { email },
-    create: {
-      email,
-      secret,
-      period,
-      algorithm,
-      digits,
-      charSet,
-      expiresAt,
-      attempts: 0,
-    },
-    update: {
-      email,
-      secret,
-      period,
-      algorithm,
-      digits,
-      charSet,
-      expiresAt,
-      attempts: 0,
-    },
-  });
-  return otp;
-}
-
-/**
- * Verfifies given code for email address
- *
- * @param email Email address code was generated for
- * @param code Code candidate
- * @returns Success or failure with error messages
- */
-async function verifyLoginCode(
-  email: string,
-  code: string,
-): Promise<
-  { success: true } | { success: false; retry: boolean; error: string }
-> {
-  const verificationData = await db.verification.findFirst({
-    where: { email },
-  });
-  if (!verificationData) {
-    return {
-      success: false,
-      retry: false,
-      error: 'Keine Code für diese Email-Adresse vorhanden!',
-    };
-  }
-
-  if (new Date() > verificationData.expiresAt) {
-    return {
-      success: false,
-      retry: false,
-      error: 'Code ist abgelaufen. Codes sind nur fünf Minuten gültig.',
-    };
-  }
-
-  const isValid = await verifyTOTP({ otp: code, ...verificationData });
-  if (isValid === null) {
-    const attempts = verificationData.attempts + 1;
-    const remainingAttempts = MAX_ATTEMPTS - attempts;
-    if (attempts < MAX_ATTEMPTS) {
-      await db.verification.update({
-        where: { id: verificationData.id },
-        data: { attempts },
-      });
-      return {
-        success: false,
-        retry: true,
-        error: `Falscher Code. Noch ${remainingAttempts === 1 ? 'ein letzter Versuch' : `${remainingAttempts} Versuche`} übrig.`,
-      };
-    }
-    return {
-      success: false,
-      retry: false,
-      error: 'Zu viele falsche Versuche.',
-    };
-  }
-  return { success: true };
 }
 
 /**
@@ -213,6 +74,7 @@ export async function signup(request: Request) {
  * Prevents the route from being called directly
  *
  * @param request Request object
+ * @returns Previous onboarding errors
  */
 export async function ensureOnboardingSession(request: Request) {
   const session = await getAuthSession(request);
@@ -235,6 +97,7 @@ export async function ensureOnboardingSession(request: Request) {
  * Returns error for invalid data. Redirects to home otherwise.
  *
  * @param request Request object
+ * @returns Login errors
  */
 export async function login(
   request: Request,
@@ -309,6 +172,7 @@ export async function login(
  *
  * @param request Request object
  * @param options FallbackUrl in case we can't get a referer
+ * @returns Cookie headers to destroy the auth session (in case of no redirect)
  */
 export async function logout(
   request: Request,

@@ -1,3 +1,48 @@
+/**
+ * Notifies admin about a security breach
+ *
+ * @param props Subject and email body
+ */
+export async function sendErrorMail(props: { subject: string; text: string }) {
+  await sendMail({
+    from: 'Tipprunde Security <security@runde.tips>',
+    to: 'Micha <micha@haus23.net>',
+    category: 'security',
+    ...props,
+  });
+}
+
+/**
+ * Sends email with login code to user
+ *
+ * @param props Username, email-address and the login code
+ */
+export async function sendCodeMail(props: {
+  userName: string;
+  code: string;
+  email: string;
+  magicLink: string;
+}) {
+  const { userName, code, email, magicLink } = props;
+
+  await sendMail(
+    {
+      from: 'Tipprunde <hallo@runde.tips>',
+      to: `${userName} <${email}>`,
+      subject: 'Tipprunde Login Code',
+      category: 'totp',
+      text: `
+      Hallo ${userName}!
+      Dein Login-Code ist: ${code}
+      Du kannst dich auch per Link anmelden: ${magicLink}
+      `,
+    },
+    'Postmark',
+  );
+}
+
+// Abstraction Layer
+
 type EmailProps = {
   from: string;
   to: string;
@@ -9,10 +54,7 @@ type EmailProps = {
 
 type Provider = 'Resend' | 'Postmark';
 
-export async function sendMail(
-  props: EmailProps,
-  provider: Provider = 'Resend',
-) {
+async function sendMail(props: EmailProps, provider: Provider = 'Resend') {
   if (provider === 'Postmark') return await sendMailWithPostmark(props);
   return await sendMailWithResend(props);
 }
