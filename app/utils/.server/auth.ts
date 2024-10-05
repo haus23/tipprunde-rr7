@@ -6,6 +6,7 @@ import type { User } from '@prisma/client';
 import { db } from './db';
 import { sendMail } from './email';
 import {
+  authCookie,
   commitAuthSession,
   destroyAuthSession,
   getAuthSession,
@@ -261,6 +262,46 @@ export async function logout(
 }
 
 // Server auth helpers
+
+/**
+ * Prolongs an eventually ongoing rememberMe-Session
+ *
+ * @param request Request object
+ * @param responseHeaders Response headers
+ */
+export async function prolongRememberMeSession(
+  request: Request,
+  responseHeaders: Headers,
+) {
+  // Is there an ongoing auth cookie set in the headers
+  const cookieBeingSet = await authCookie.parse(
+    responseHeaders.get('Set-Cookie'),
+  );
+  if (cookieBeingSet !== null) return;
+
+  const authSession = await getAuthSession(request);
+  const sessionId = authSession.get('sessionId');
+  if (!sessionId) return;
+
+  const appSession = await db.session.findUnique({
+    where: { id: sessionId, expirationDate: { gt: new Date() } },
+  });
+  if (!appSession || appSession.expires) return;
+
+  await db.session.update({
+    where: { id: appSession.id },
+    data: {
+      ...appSession,
+      updatedAt: new Date(),
+      expirationDate: new Date(Date.now() + SESSION_EXPIRATION_TIME * 1000),
+    },
+  });
+
+  responseHeaders.append(
+    'Set-Cookie',
+    await commitAuthSession(authSession, { maxAge: SESSION_EXPIRATION_TIME }),
+  );
+}
 
 /**
  * Validates app session and returns logged-in user or null.
