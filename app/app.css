@@ -2,18 +2,42 @@
 
 :root {
   /* Color tokens */
-  --mauve-1: #fdfcfd;
-  --mauve-dark-1: #121113;
+  --sand-6: #DAD9D6;
+  --sand-12: #21201C;
+  --sand-dark-1: #111110;
+  --sand-dark-6: #3B3A37;
+  --sand-dark-12: #EEEEEC;
 }
 @layer base {
   :root {
     color-scheme: light dark;
 
-    --bg-app: light-dark(white, var(--mauve-dark-1));
+    --text-app: light-dark(var(--sand-12), var(--sand-dark-12));
+
+    --bg-app: light-dark(white, var(--sand-dark-1));
+
+    --border-default: light-dark(var(--sand-6), var(--sand-dark-6));
+  }
+
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--border-default);
+  }
+
+  .light {
+    color-scheme: light;
+  }
+
+  .dark {
+    color-scheme: dark;
   }
 }
 
 @theme {
+  --color-app: var(--text-app);
   --background-color-app: var(--bg-app);
   --background-color-content: var(--bg-app);
 }
