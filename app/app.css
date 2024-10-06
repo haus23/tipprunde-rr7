@@ -2,11 +2,11 @@
 
 :root {
   /* Color tokens */
-  --sand-6: #DAD9D6;
-  --sand-12: #21201C;
+  --sand-6: #dad9d6;
+  --sand-12: #21201c;
   --sand-dark-1: #111110;
-  --sand-dark-6: #3B3A37;
-  --sand-dark-12: #EEEEEC;
+  --sand-dark-6: #3b3a37;
+  --sand-dark-12: #eeeeec;
 }
 @layer base {
   :root {
