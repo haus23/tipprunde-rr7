@@ -1,6 +1,23 @@
 # Changelog
 
 
+## v0.2.5
+
+[compare changes](https://github.com/haus23/tipprunde/compare/v0.2.4...v0.2.5)
+
+### 🚀 Enhancements
+
+- Start styling. Add first color tokens. ([b784fa1](https://github.com/haus23/tipprunde/commit/b784fa1))
+
+### 🩹 Fixes
+
+- Configure biome as css formatter. ([00eb5e8](https://github.com/haus23/tipprunde/commit/00eb5e8))
+- Format css classes. Resolves #18 ([#18](https://github.com/haus23/tipprunde/issues/18))
+
+### ❤️ Contributors
+
+- Micha <micha@haus23.net>
+
 ## v0.2.4
 
 [compare changes](https://github.com/haus23/tipprunde/compare/v0.2.3...v0.2.4)
