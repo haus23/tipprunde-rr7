@@ -4,8 +4,8 @@ import { Button } from '#/components/ui';
 
 export default function FohLayout() {
   return (
-    <div className="relative isolate min-h-svh w-full grid grid-cols-[200px_1fr]">
-      <header className="flex flex-col border-r py-2 pl-2 pr-4">
+    <div className="relative isolate grid min-h-svh w-full grid-cols-[200px_1fr]">
+      <header className="flex flex-col border-r py-2 pr-4 pl-2">
         <Link to="/">
           <Logo />
         </Link>
@@ -13,7 +13,7 @@ export default function FohLayout() {
           <Button type="submit">Log Out</Button>
         </Form>
       </header>
-      <main className="pl-2 mt-2.5">
+      <main className="mt-2.5 pl-2">
         <Outlet />
       </main>
     </div>

@@ -30,10 +30,10 @@ export default function OnboardingRoute({
     <div>
       <h1 className="text-2xl">Code Eingabe</h1>
       <Form className="mt-4 flex flex-col gap-y-4" method="post">
-        <div className="self-center flex gap-x-2">
+        <div className="flex gap-x-2 self-center">
           <label htmlFor="code">Code:</label>
           <input
-            className="w-24 text-center self-center"
+            className="w-24 self-center text-center"
             id="code"
             type="text"
             name="code"
