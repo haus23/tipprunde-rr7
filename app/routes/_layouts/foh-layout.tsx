@@ -11,14 +11,14 @@ export default function FohLayout() {
         <Link to="/">
           <Logo />
         </Link>
-        <div className="grow flex justify-between">
+        <div className="flex grow justify-between">
           <div className="grow" />
           <div>
             {isAuthenticated ? <UserMenu /> : <Link to="/login">Log In</Link>}
           </div>
         </div>
       </header>
-      <main className="mt-2 max-w-prose mx-auto">
+      <main className="mx-auto mt-2 max-w-prose">
         <Outlet />
       </main>
     </div>

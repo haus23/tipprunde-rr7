@@ -8,7 +8,7 @@ import {
 import { tv } from '#/utils/tv';
 
 const styles = tv({
-  base: 'bg-content border',
+  base: 'border bg-content',
 });
 
 namespace Popover {

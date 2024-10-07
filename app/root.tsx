@@ -6,14 +6,15 @@ import {
   ScrollRestoration,
   data,
 } from 'react-router';
+
 import type * as Route from './+types.root';
 
+import { UIProvider } from './components/ui';
 import { getUser } from './utils/.server/auth';
+import { useAuthBroadcast } from './utils/auth';
 import { combineHeaders } from './utils/misc';
 
 import './app.css';
-import { UIProvider } from './components/ui';
-import { useAuthBroadcast } from './utils/auth';
 
 export const loader = async ({ request }: Route.LoaderArgs) => {
   const { user, headers: authHeaders } = await getUser(request);
@@ -30,7 +31,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body className="bg-app">
+      <body className="bg-app text-app">
         <UIProvider>{children}</UIProvider>
         <ScrollRestoration />
         <Scripts />
