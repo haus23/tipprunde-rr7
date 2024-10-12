@@ -13,7 +13,7 @@ export default function FohLayout() {
           <Button type="submit">Log Out</Button>
         </Form>
       </header>
-      <main className="mt-2.5 pl-2">
+      <main className="bg-content pt-2.5 pl-2">
         <Outlet />
       </main>
     </div>
