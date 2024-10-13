@@ -10,9 +10,10 @@ export const routes: RouteConfig = [
     route('magic-link', 'routes/auth/magic-link.tsx'),
     route('onboarding', 'routes/auth/onboarding.tsx'),
   ]),
-  layout('routes/_layouts/manager-layout.tsx', [
+  layout('routes/_layouts/manager/_layout.tsx', [
     ...prefix('manager', [
       index('routes/manager/dashboard/_route.tsx'),
+      route('sync', 'routes/manager/championship/sync.tsx'),
       // Current championship
       ...prefix(':championshipId', [
         index('routes/manager/championship/_championship.tsx'),
@@ -20,7 +21,6 @@ export const routes: RouteConfig = [
         route('tipps', 'routes/manager/championship/tips.tsx'),
         route('ergebnisse', 'routes/manager/championship/results.tsx'),
         route('zusatzpunkte', 'routes/manager/championship/extrapoints.tsx'),
-        route('sync', 'routes/manager/championship/sync.tsx'),
       ]),
       // Master data
       route('turniere', 'routes/manager/championships/_route.tsx'),
