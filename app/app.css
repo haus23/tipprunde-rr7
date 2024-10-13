@@ -57,11 +57,15 @@
 @layer base {
   :root {
     /* Text */
-    --text-app: light-dark(var(--gray-12, --gray-dark-12));
+    --text-app: light-dark(var(--gray-12), var(--gray-dark-12));
+    --text-subtle: light-dark(var(--gray-11), var(--gray-dark-11));
+    --text-selected: light-dark(var(--grass-11), var(--grass-dark-11));
 
     /* Backgrounds */
     --bg-app: light-dark(white, var(--gray-dark-1));
     --bg-content: light-dark(var(--gray-1), var(--gray-dark-2));
+    --bg-content-hover: light-dark(var(--gray-4), var(--gray-dark-4));
+    --bg-content-active: light-dark(var(--gray-5), var(--gray-dark-5));
 
     /* Borders, Rings */
     --border-default: light-dark(var(--gray-6), var(--gray-dark-6));
@@ -76,7 +80,11 @@
 
 @theme {
   --color-app: var(--text-app);
+  --color-subtle: var(--text-subtle);
+  --color-selected: var(--text-selected);
   --background-color-app: var(--bg-app);
   --background-color-content: var(--bg-content);
+  --background-color-content-hover: var(--bg-content-hover);
+  --background-color-content-active: var(--bg-content-active);
   --background-color-popover: var(--bg-app);
 }
