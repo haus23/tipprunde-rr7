@@ -7,7 +7,7 @@ import { focusRingStyles, interactiveContentStyles } from '../theme';
 
 const styles = tv({
   extend: focusRingStyles,
-  base: 'px-2 py-1.5',
+  base: 'flex items-center px-2 py-1.5',
   variants: {
     variant: {
       default: '',

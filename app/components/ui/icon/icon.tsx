@@ -4,7 +4,21 @@ import { tv } from '#/utils/tv';
 
 import iconsHref from './icons.svg';
 
-type IconName = 'user';
+type IconName =
+  | 'calendar'
+  | 'dices'
+  | 'folder'
+  | 'folder-sync'
+  | 'folders'
+  | 'house'
+  | 'log-out'
+  | 'pilcrow'
+  | 'scale'
+  | 'shield'
+  | 'smile-plus'
+  | 'trophy'
+  | 'user'
+  | 'users';
 
 const styles = tv({ base: 'inline size-5' });
 

@@ -1,6 +1,7 @@
 import { Form, Link } from 'react-router';
 import { Logo } from '#/components/logo';
 import { Button, NavLink } from '#/components/ui';
+import { Icon } from '#/components/ui/icon/icon';
 
 export function ManagerNav() {
   return (
@@ -12,44 +13,44 @@ export function ManagerNav() {
       </div>
       <div className="flex grow flex-col gap-y-2 p-2">
         <NavLink to="/manager" end variant="menuitem">
-          Dashboard
+          <Icon name="house">Dashboard</Icon>
         </NavLink>
         <NavLink to="/manager/hr2425" end variant="menuitem">
-          Turnier
+          <Icon name="folder">Turnier</Icon>
         </NavLink>
         <NavLink to="/manager/hr2425/spiele" variant="menuitem">
-          Spiele
+          <Icon name="calendar">Spiele</Icon>
         </NavLink>
         <NavLink to="/manager/hr2425/tipps" variant="menuitem">
-          Tipps
+          <Icon name="dices">Tipps</Icon>
         </NavLink>
         <NavLink to="/manager/hr2425/ergebnisse" variant="menuitem">
-          Ergebnisse
+          <Icon name="scale">Ergebnisse</Icon>
         </NavLink>
         <NavLink to="/manager/hr2425/zusatzpunkte" variant="menuitem">
-          Zusatzpunkte
+          <Icon name="smile-plus">Zusatzpunkte</Icon>
         </NavLink>
         <NavLink to="/manager/sync" variant="menuitem">
-          Synchronisierung
+          <Icon name="folder-sync">Synchronisierung</Icon>
         </NavLink>
       </div>
       <div>
         <h3 className="pb-2 pl-4 font-medium text-app/50">Stammdaten</h3>
         <div className="flex flex-col gap-y-2 border-t p-2">
           <NavLink to="/manager/turniere" variant="menuitem">
-            Turniere
+            <Icon name="folders">Turniere</Icon>
           </NavLink>
           <NavLink to="/manager/spieler" variant="menuitem">
-            Spieler
+            <Icon name="users">Spieler</Icon>
           </NavLink>
           <NavLink to="/manager/teams" variant="menuitem">
-            Teams
+            <Icon name="shield">Teams</Icon>
           </NavLink>
           <NavLink to="/manager/ligen" variant="menuitem">
-            Ligen
+            <Icon name="trophy">Ligen</Icon>
           </NavLink>
           <NavLink to="/manager/regelwerke" variant="menuitem">
-            Regelwerke
+            <Icon name="pilcrow">Regelwerke</Icon>
           </NavLink>
         </div>
       </div>
@@ -59,7 +60,7 @@ export function ManagerNav() {
         className="flex flex-col border-t p-2"
       >
         <Button type="submit" variant="menuitem">
-          Log Out
+          <Icon name="log-out">Log Out</Icon>
         </Button>
       </Form>
     </div>
