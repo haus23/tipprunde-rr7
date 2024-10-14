@@ -69,6 +69,8 @@
 
     /* Borders, Rings */
     --border-default: light-dark(var(--gray-6), var(--gray-dark-6));
+    --ring-default: light-dark(var(--gray-6), var(--gray-dark-6));
+    --ring-offset-default: var(--bg-app);
 
     color-scheme: light dark;
   }
@@ -79,12 +81,14 @@
 }
 
 @theme {
-  --color-app: var(--text-app);
-  --color-subtle: var(--text-subtle);
-  --color-selected: var(--text-selected);
   --background-color-app: var(--bg-app);
   --background-color-content: var(--bg-content);
   --background-color-content-hover: var(--bg-content-hover);
   --background-color-content-active: var(--bg-content-active);
   --background-color-popover: var(--bg-app);
+  --color-app: var(--text-app);
+  --color-subtle: var(--text-subtle);
+  --color-selected: var(--text-selected);
+  --ring-color-default: var(--ring-default);
+  --ring-offset-color-default: var(--ring-offset-default);
 }

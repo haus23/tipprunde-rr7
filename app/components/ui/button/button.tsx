@@ -5,16 +5,27 @@ import {
 } from 'react-aria-components';
 
 import { type VariantProps, tv } from '#/utils/tv';
-import { menuItemStyles } from '../styles';
+import { focusRingStyles, interactiveContentStyles } from '../theme';
 
 const styles = tv({
-  base: 'inline-flex items-center',
+  extend: focusRingStyles,
+  base: 'inline-flex items-center px-2 py-1.5',
   variants: {
     variant: {
       default: 'p-1.5',
-      menuitem: `${menuItemStyles()}`,
+      menuitem: interactiveContentStyles.base(),
+    },
+    isHovered: {
+      true: '',
     },
   },
+  compoundVariants: [
+    {
+      variant: 'menuitem',
+      isHovered: true,
+      class: interactiveContentStyles.hover(),
+    },
+  ],
   defaultVariants: {
     variant: 'default',
   },
