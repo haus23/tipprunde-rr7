@@ -9,10 +9,11 @@ import { focusRingStyles, interactiveContentStyles } from '../theme';
 
 const styles = tv({
   extend: focusRingStyles,
-  base: 'inline-flex items-center px-2 py-1.5',
+  base: 'inline-flex items-center p-1.5',
   variants: {
     variant: {
-      default: 'p-1.5',
+      default: 'px-4 py-2',
+      ghost: `${interactiveContentStyles.base()} data-[pressed]:scale-95`,
       menuitem: interactiveContentStyles.base(),
     },
     isHovered: {
@@ -21,7 +22,7 @@ const styles = tv({
   },
   compoundVariants: [
     {
-      variant: 'menuitem',
+      variant: ['menuitem', 'ghost'],
       isHovered: true,
       class: interactiveContentStyles.hover(),
     },
