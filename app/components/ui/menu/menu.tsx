@@ -12,6 +12,7 @@ import {
 
 import { tv } from '#/utils/tv';
 import { Popover } from '../popover/popover';
+import { interactiveContentStyles } from '../theme';
 
 const menuItemsStyles = tv({
   base: ['space-y-1 p-1.5 outline-none'],
@@ -20,11 +21,13 @@ const menuItemsStyles = tv({
 const menuItemStyles = tv({
   base: [
     'relative flex items-center justify-between',
-    'cursor-default select-none',
-    'px-4 py-2 text-sm',
+    'cursor-default select-none outline-none',
+    'px-4 py-2',
+    interactiveContentStyles.base(),
   ],
   variants: {
-    isSelected: { true: 'pr-2' },
+    isSelected: { true: interactiveContentStyles.active() },
+    isFocused: { true: interactiveContentStyles.hover() },
   },
 });
 

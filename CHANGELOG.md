@@ -1,6 +1,38 @@
 # Changelog
 
 
+## v0.2.6
+
+[compare changes](https://github.com/haus23/tipprunde/compare/v0.2.5...v0.2.6)
+
+### 🚀 Enhancements
+
+- Add all manager routes ([d3f4142](https://github.com/haus23/tipprunde/commit/d3f4142))
+- Add icons for the menu items, ([db1fc68](https://github.com/haus23/tipprunde/commit/db1fc68))
+- Add ghost button variant. ([4c8fc16](https://github.com/haus23/tipprunde/commit/4c8fc16))
+- Add dialog component. ([7dc00fa](https://github.com/haus23/tipprunde/commit/7dc00fa))
+- Use link context. ([fa1424c](https://github.com/haus23/tipprunde/commit/fa1424c))
+- Implement backend layout. ([7834911](https://github.com/haus23/tipprunde/commit/7834911))
+
+### 🩹 Fixes
+
+- Add all base colors. Will not support color themes. Closes #25 ([#25](https://github.com/haus23/tipprunde/issues/25))
+- Remove viewbox. Removes the center problem. ([0db00fa](https://github.com/haus23/tipprunde/commit/0db00fa))
+- Style nav menu items. ([6e09bc0](https://github.com/haus23/tipprunde/commit/6e09bc0))
+
+### 💅 Refactors
+
+- Extract manager nav. Fix sync route. ([b51d06a](https://github.com/haus23/tipprunde/commit/b51d06a))
+- Make styles more reusable with focusing on theme color settings. ([d078a63](https://github.com/haus23/tipprunde/commit/d078a63))
+
+### 🏡 Chore
+
+- Bump rr7 to pre.1 ([45e149c](https://github.com/haus23/tipprunde/commit/45e149c))
+
+### ❤️ Contributors
+
+- Micha <micha@haus23.net>
+
 ## v0.2.5
 
 [compare changes](https://github.com/haus23/tipprunde/compare/v0.2.4...v0.2.5)
