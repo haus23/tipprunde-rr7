@@ -12,13 +12,16 @@ type IconName =
   | 'folders'
   | 'house'
   | 'log-out'
+  | 'menu'
+  | 'moon'
   | 'pilcrow'
   | 'scale'
   | 'shield'
   | 'smile-plus'
   | 'trophy'
   | 'user'
-  | 'users';
+  | 'users'
+  | 'x';
 
 const styles = tv({ base: 'inline size-5' });
 
