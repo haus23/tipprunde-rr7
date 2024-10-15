@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@epic-web/totp": "~2.0.0",
-    "@prisma/client": "~5.20.0",
+    "@prisma/client": "~5.21.0",
     "@react-router/node": "7.0.0-pre.1",
     "@react-router/serve": "7.0.0-pre.1",
     "firebase-admin": "~12.6.0",
@@ -42,7 +42,7 @@
     "@types/node": "~22.7.5",
     "@types/react": "~18.3.11",
     "@types/react-dom": "~18.3.0",
-    "prisma": "~5.20.0",
+    "prisma": "~5.21.0",
     "tailwindcss": "4.0.0-alpha.26",
     "typescript": "~5.6.2",
     "vite": "^5.4.8",
