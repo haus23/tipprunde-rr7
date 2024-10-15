@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v0.2.7
+
+[compare changes](https://github.com/haus23/tipprunde/compare/v0.2.6...v0.2.7)
+
+### 🩹 Fixes
+
+- Update node types due to new node version. ([62cce3b](https://github.com/haus23/tipprunde/commit/62cce3b))
+- Update pnpm. ([537b03f](https://github.com/haus23/tipprunde/commit/537b03f))
+- Update react aria. ([9d17991](https://github.com/haus23/tipprunde/commit/9d17991))
+- Update prisma. ([33b0b4e](https://github.com/haus23/tipprunde/commit/33b0b4e))
+- Update typings and vite. ([46f2859](https://github.com/haus23/tipprunde/commit/46f2859))
+
+### ❤️ Contributors
+
+- Micha <micha@haus23.net>
+
 ## v0.2.6
 
 [compare changes](https://github.com/haus23/tipprunde/compare/v0.2.5...v0.2.6)
