@@ -1,5 +1,9 @@
 import { useFocusRing, useHover } from 'react-aria';
-import { composeRenderProps } from 'react-aria-components';
+import {
+  LinkContext,
+  composeRenderProps,
+  useSlottedContext,
+} from 'react-aria-components';
 import { type NavLinkProps, NavLink as RRNavLink } from 'react-router';
 
 import { type VariantProps, tv } from '#/utils/tv';
@@ -45,10 +49,20 @@ namespace NavLink {
 export function NavLink({ className, variant, ...props }: NavLink.Props) {
   const { focusProps, isFocusVisible } = useFocusRing();
   const { hoverProps, isHovered } = useHover({});
+
+  // Delegate click event to press event context handler
+  const linkContext = useSlottedContext(LinkContext);
+  function handleClick() {
+    if (linkContext?.onPress) {
+      linkContext.onPress(null as never);
+    }
+  }
+
   return (
     <RRNavLink
       {...focusProps}
       {...hoverProps}
+      onClick={handleClick}
       className={composeRenderProps(className, (className, renderProps) =>
         styles({
           ...renderProps,
