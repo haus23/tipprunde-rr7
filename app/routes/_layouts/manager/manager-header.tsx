@@ -31,7 +31,7 @@ export function ManagerHeader() {
 
   return (
     <div>
-      <div className="fixed inset-y-0 hidden w-52 md:flex">
+      <div className="fixed inset-y-0 hidden w-52 border-r shadow-xl md:flex dark:border-0">
         <ManagerNav />
       </div>
       <div className="fixed inset-x-0 flex h-14 items-center gap-x-2 bg-content px-2 md:left-52">
@@ -40,7 +40,11 @@ export function ManagerHeader() {
             <Button variant="ghost">
               <Icon name="menu" />
             </Button>
-            <DialogPanel className="relative" position="left" width="w-52">
+            <DialogPanel
+              className="relative border-r shadow-xl dark:border-0"
+              position="left"
+              width="w-52"
+            >
               {({ close }) => (
                 <>
                   <Button
