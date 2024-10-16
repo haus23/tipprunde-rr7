@@ -11,7 +11,7 @@ export const focusRingStyles = tv({
 
 const interactiveContent = tv({
   slots: {
-    base: 'rounded font-medium text-sm text-subtle transition-colors',
+    base: 'rounded font-medium text-sm text-subtle tracking-wide transition-colors',
     hover: 'bg-content-hover text-app',
     active: 'bg-content-active text-selected',
   },

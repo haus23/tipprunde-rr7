@@ -81,6 +81,7 @@
 }
 
 @theme {
+  --font-family-sans: "Inter", sans-serif;
   --background-color-app: var(--bg-app);
   --background-color-content: var(--bg-content);
   --background-color-content-hover: var(--bg-content-hover);
