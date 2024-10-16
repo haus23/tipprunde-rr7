@@ -13,7 +13,7 @@ export function UserMenu() {
 
   return (
     <Menu>
-      <Button>
+      <Button variant="ghost">
         <Icon name="user" />
       </Button>
       <MenuItems onAction={handleAction}>
