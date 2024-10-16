@@ -14,6 +14,7 @@ import { getUser } from './utils/.server/auth';
 import { useAuthBroadcast } from './utils/auth';
 import { combineHeaders } from './utils/misc';
 
+import '@fontsource-variable/inter';
 import './app.css';
 
 export const loader = async ({ request }: Route.LoaderArgs) => {

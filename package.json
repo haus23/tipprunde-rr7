@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "@epic-web/totp": "~2.0.0",
+    "@fontsource-variable/inter": "^5.1.0",
     "@prisma/client": "~5.21.0",
     "@react-router/node": "7.0.0-pre.1",
     "@react-router/serve": "7.0.0-pre.1",

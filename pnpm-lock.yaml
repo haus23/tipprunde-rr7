@@ -11,6 +11,9 @@ importers:
       '@epic-web/totp':
         specifier: ~2.0.0
         version: 2.0.0
+      '@fontsource-variable/inter':
+        specifier: ^5.1.0
+        version: 5.1.0
       '@prisma/client':
         specifier: ~5.21.0
         version: 5.21.0(prisma@5.21.0)
@@ -448,6 +451,9 @@ packages:
 
   '@firebase/util@1.10.0':
     resolution: {integrity: sha512-xKtx4A668icQqoANRxyDLBLz51TAbDP9KRfpbKGxiCAW346d0BeJe5vN6/hKxxmWwnZ0mautyv39JxviwwQMOQ==}
+
+  '@fontsource-variable/inter@5.1.0':
+    resolution: {integrity: sha512-Wj2dUGP0vUpxRGQTXQTCNJO+aLcFcQm+gUPXfj/aS877bQkEPBPv9JvZJpwdm2vzelt8NTZ+ausKlBCJjh2XIg==}
 
   '@formatjs/ecma402-abstract@2.0.0':
     resolution: {integrity: sha512-rRqXOqdFmk7RYvj4khklyqzcfQl9vEL/usogncBHRZfZBDOwMGuSRNFl02fu5KGHXdbinju+YXyuR+Nk8xlr/g==}
@@ -3138,6 +3144,8 @@ snapshots:
   '@firebase/util@1.10.0':
     dependencies:
       tslib: 2.7.0
+
+  '@fontsource-variable/inter@5.1.0': {}
 
   '@formatjs/ecma402-abstract@2.0.0':
     dependencies:
