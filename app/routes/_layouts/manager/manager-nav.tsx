@@ -36,7 +36,7 @@ export function ManagerNav() {
           <Icon name="folder-sync">Synchronisierung</Icon>
         </NavLink>
       </div>
-      <div>
+      <div className="mt-4">
         <h3 className="pb-2 pl-4 font-medium text-app/50">Stammdaten</h3>
         <div className="flex flex-col gap-y-2 border-t p-2">
           <NavLink to="/manager/turniere" variant="menuitem">
