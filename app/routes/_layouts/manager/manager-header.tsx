@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Button } from '#/components/ui';
+import { Button } from '#/components/ui/button/button';
 import { Dialog, DialogPanel } from '#/components/ui/dialog/dialog';
 import { Icon } from '#/components/ui/icon/icon';
 

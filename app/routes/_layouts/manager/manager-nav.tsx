@@ -1,13 +1,15 @@
 import { Form, Link } from 'react-router';
+
 import { Logo } from '#/components/logo';
-import { Button, NavLink } from '#/components/ui';
+import { Button } from '#/components/ui/button/button';
 import { Icon } from '#/components/ui/icon/icon';
+import { NavLink } from '#/components/ui/link/link';
 
 export function ManagerNav() {
   return (
     <div className="flex grow flex-col overflow-y-auto">
-      <div className="p-2">
-        <Link to="/">
+      <div className="flex h-14 items-center border-transparent border-b px-2">
+        <Link className="my-2" to="/">
           <Logo />
         </Link>
       </div>
@@ -34,7 +36,7 @@ export function ManagerNav() {
           <Icon name="folder-sync">Synchronisierung</Icon>
         </NavLink>
       </div>
-      <div>
+      <div className="mt-4">
         <h3 className="pb-2 pl-4 font-medium text-app/50">Stammdaten</h3>
         <div className="flex flex-col gap-y-2 border-t p-2">
           <NavLink to="/manager/turniere" variant="menuitem">
