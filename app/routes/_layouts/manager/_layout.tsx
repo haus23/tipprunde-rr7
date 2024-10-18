@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router';
+
 import { ManagerHeader } from './manager-header';
-import { ManagerNav } from './manager-nav';
 
 export default function ManagerLayout() {
   return (

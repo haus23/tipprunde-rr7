@@ -1,6 +1,8 @@
 import { useSubmit } from 'react-router';
-import { Button, Menu, MenuItem, MenuItems } from './ui';
+
+import { Button } from './ui/button/button';
 import { Icon } from './ui/icon/icon';
+import { Menu, MenuItem, MenuItems } from './ui/menu/menu';
 
 export function UserMenu() {
   const submit = useSubmit();

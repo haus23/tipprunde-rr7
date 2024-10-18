@@ -1,7 +1,9 @@
 import { Form, Link } from 'react-router';
+
 import { Logo } from '#/components/logo';
-import { Button, NavLink } from '#/components/ui';
+import { Button } from '#/components/ui/button/button';
 import { Icon } from '#/components/ui/icon/icon';
+import { NavLink } from '#/components/ui/link/link';
 
 export function ManagerNav() {
   return (

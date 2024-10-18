@@ -9,7 +9,7 @@ import {
 
 import type * as Route from './+types.root';
 
-import { UIProvider } from './components/ui';
+import { UIProvider } from './components/ui/provider';
 import { getUser } from './utils/.server/auth';
 import { useAuthBroadcast } from './utils/auth';
 import { combineHeaders } from './utils/misc';
