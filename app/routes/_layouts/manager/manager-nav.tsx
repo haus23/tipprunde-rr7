@@ -8,8 +8,8 @@ import { NavLink } from '#/components/ui/link/link';
 export function ManagerNav() {
   return (
     <div className="flex grow flex-col overflow-y-auto">
-      <div className="p-2">
-        <Link to="/">
+      <div className="flex h-14 items-center border-transparent border-b px-2">
+        <Link className="my-2" to="/">
           <Logo />
         </Link>
       </div>
