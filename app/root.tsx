@@ -1,5 +1,6 @@
 import {
   Links,
+  type LinksFunction,
   Meta,
   Outlet,
   Scripts,
@@ -15,7 +16,9 @@ import { useAuthBroadcast } from './utils/auth';
 import { combineHeaders } from './utils/misc';
 
 import '@fontsource-variable/inter';
-import './app.css';
+
+import styles from './app.css?url';
+export const links: LinksFunction = () => [{ rel: 'stylesheet', href: styles }];
 
 export const loader = async ({ request }: Route.LoaderArgs) => {
   const { user, headers: authHeaders } = await getUser(request);
