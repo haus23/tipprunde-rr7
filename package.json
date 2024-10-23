@@ -37,7 +37,7 @@
     "tailwind-variants": "0.2.1"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.9.3",
+    "@biomejs/biome": "1.9.4",
     "@react-router/dev": "7.0.0-pre.1",
     "@tailwindcss/vite": "4.0.0-alpha.29",
     "@types/node": "~22.7.9",
