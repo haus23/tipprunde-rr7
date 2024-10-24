@@ -4,10 +4,13 @@ import { Dialog, DialogPanel } from '#/components/ui/dialog/dialog';
 import { Icon } from '#/components/ui/icon/icon';
 
 import { LinkContext } from 'react-aria-components';
+import { usePageTitle } from '#/utils/app/manager/use-page-title';
 import { ManagerNav } from './manager-nav';
 
 export function ManagerHeader() {
   const [isOpen, setOpen] = useState(false);
+
+  const pageTitle = usePageTitle();
 
   function handleOpenChange(isOpen: boolean) {
     // Fix for: open click triggers immediatly the underlying home link
@@ -62,7 +65,7 @@ export function ManagerHeader() {
             </DialogPanel>
           </Dialog>
         </div>
-        <h1 className="grow text-2xl">Verwaltung</h1>
+        <h1 className="grow text-2xl">{pageTitle}</h1>
         <div>
           <Button variant="ghost">
             <Icon name="moon" />

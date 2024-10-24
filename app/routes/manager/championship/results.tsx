@@ -11,10 +11,10 @@ export const loader = async ({ request }: Route.LoaderArgs) => {
   return null;
 };
 
+export const handle = {
+  pageTitle: 'Ergebnisse',
+};
+
 export default function ResultsRoute() {
-  return (
-    <div>
-      <h1 className="text-2xl">Ergebnisse</h1>
-    </div>
-  );
+  return <div />;
 }

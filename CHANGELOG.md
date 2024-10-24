@@ -1,6 +1,41 @@
 # Changelog
 
 
+## v0.2.8
+
+[compare changes](https://github.com/haus23/tipprunde/compare/v0.2.7...v0.2.8)
+
+### 🚀 Enhancements
+
+- Use inter font. ([a22260d](https://github.com/haus23/tipprunde/commit/a22260d))
+
+### 🩹 Fixes
+
+- Add border and shadow to nav ([cc3a785](https://github.com/haus23/tipprunde/commit/cc3a785))
+- Align frontend with backend layout. ([b4019e8](https://github.com/haus23/tipprunde/commit/b4019e8))
+- Make tracking wider. ([db25bf0](https://github.com/haus23/tipprunde/commit/db25bf0))
+- Remove barrel file. ([412d4be](https://github.com/haus23/tipprunde/commit/412d4be))
+- Wrong font name. ([fd7307f](https://github.com/haus23/tipprunde/commit/fd7307f))
+- Add missing robots file. ([33fa4cc](https://github.com/haus23/tipprunde/commit/33fa4cc))
+- Keep element in position with overflow scrollbar visible ([3e7e7d3](https://github.com/haus23/tipprunde/commit/3e7e7d3))
+- Add some margin between the navbar sections when scrollbar is visible. ([ca04094](https://github.com/haus23/tipprunde/commit/ca04094))
+- Align code with rr7 template. ([08ebc5a](https://github.com/haus23/tipprunde/commit/08ebc5a))
+- Import styles via url-import. ([3912b2d](https://github.com/haus23/tipprunde/commit/3912b2d))
+- Implement page title and usage. ([6e62bc6](https://github.com/haus23/tipprunde/commit/6e62bc6))
+- Add pageTitle handles for all routes. ([e920871](https://github.com/haus23/tipprunde/commit/e920871))
+
+### 🏡 Chore
+
+- Update pnpm. ([8d45389](https://github.com/haus23/tipprunde/commit/8d45389))
+- Update tailwind. ([8451509](https://github.com/haus23/tipprunde/commit/8451509))
+- Update dev deps. ([07b0413](https://github.com/haus23/tipprunde/commit/07b0413))
+- Update biome. ([7103abe](https://github.com/haus23/tipprunde/commit/7103abe))
+- Add Championship model and align other models. ([13d07be](https://github.com/haus23/tipprunde/commit/13d07be))
+
+### ❤️ Contributors
+
+- Micha <micha@haus23.net>
+
 ## v0.2.7
 
 [compare changes](https://github.com/haus23/tipprunde/compare/v0.2.6...v0.2.7)

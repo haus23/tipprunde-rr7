@@ -11,10 +11,10 @@ export const loader = async ({ request }: Route.LoaderArgs) => {
   return null;
 };
 
+export const handle = {
+  pageTitle: 'Teams',
+};
+
 export default function TeamsRoute() {
-  return (
-    <div>
-      <h1 className="text-2xl">Teams</h1>
-    </div>
-  );
+  return <div />;
 }
