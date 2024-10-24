@@ -11,10 +11,10 @@ export const loader = async ({ request }: Route.LoaderArgs) => {
   return null;
 };
 
+export const handle = {
+  pageTitle: 'Spieler',
+};
+
 export default function PlayersdRoute() {
-  return (
-    <div>
-      <h1 className="text-2xl">Spieler</h1>
-    </div>
-  );
+  return <div />;
 }

@@ -11,10 +11,10 @@ export const loader = async ({ request }: Route.LoaderArgs) => {
   return null;
 };
 
+export const handle = {
+  pageTitle: 'Zusatzpunkte',
+};
+
 export default function ExtraPointsRoute() {
-  return (
-    <div>
-      <h1 className="text-2xl">Zusatzpunkte</h1>
-    </div>
-  );
+  return <div />;
 }

@@ -11,10 +11,10 @@ export const loader = async ({ request }: Route.LoaderArgs) => {
   return null;
 };
 
+export const handle = {
+  pageTitle: 'Regelwerke',
+};
+
 export default function RulesetsRoute() {
-  return (
-    <div>
-      <h1 className="text-2xl">Regelwerke</h1>
-    </div>
-  );
+  return <div />;
 }

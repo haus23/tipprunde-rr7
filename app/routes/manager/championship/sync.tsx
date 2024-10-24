@@ -11,10 +11,10 @@ export const loader = async ({ request }: Route.LoaderArgs) => {
   return null;
 };
 
+export const handle = {
+  pageTitle: 'Synchronisierung',
+};
+
 export default function SyncRoute() {
-  return (
-    <div>
-      <h1 className="text-2xl">Synchronisierung</h1>
-    </div>
-  );
+  return <div />;
 }

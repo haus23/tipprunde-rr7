@@ -11,10 +11,10 @@ export const loader = async ({ request }: Route.LoaderArgs) => {
   return null;
 };
 
+export const handle = {
+  pageTitle: 'Turnier',
+};
+
 export default function ChampionshipRoute() {
-  return (
-    <div>
-      <h1 className="text-2xl">Turnier</h1>
-    </div>
-  );
+  return <div />;
 }

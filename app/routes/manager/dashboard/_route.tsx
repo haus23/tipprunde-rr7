@@ -11,10 +11,10 @@ export const loader = async ({ request }: Route.LoaderArgs) => {
   return null;
 };
 
+export const handle = {
+  pageTitle: 'Manager',
+};
+
 export default function DashboardRoute() {
-  return (
-    <div>
-      <h1 className="text-2xl">Dashboard</h1>
-    </div>
-  );
+  return <div />;
 }

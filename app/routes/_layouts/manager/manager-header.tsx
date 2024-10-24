@@ -65,7 +65,7 @@ export function ManagerHeader() {
             </DialogPanel>
           </Dialog>
         </div>
-        <h1 className="grow text-2xl">{pageTitle || 'Manager'}</h1>
+        <h1 className="grow text-2xl">{pageTitle}</h1>
         <div>
           <Button variant="ghost">
             <Icon name="moon" />

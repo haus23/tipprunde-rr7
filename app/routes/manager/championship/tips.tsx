@@ -11,10 +11,10 @@ export const loader = async ({ request }: Route.LoaderArgs) => {
   return null;
 };
 
+export const handle = {
+  pageTitle: 'Tipps',
+};
+
 export default function TipsRoute() {
-  return (
-    <div>
-      <h1 className="text-2xl">Tipps</h1>
-    </div>
-  );
+  return <div />;
 }
