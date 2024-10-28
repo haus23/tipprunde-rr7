@@ -13,7 +13,7 @@ export const routes: RouteConfig = [
   layout('routes/_layouts/manager/_layout.tsx', [
     ...prefix('manager', [
       index('routes/manager/dashboard/_route.tsx'),
-      route('sync', 'routes/manager/championship/sync.tsx'),
+      route('sync', 'routes/manager/sync/_route.tsx'),
       // Current championship
       ...prefix(':championshipId', [
         index('routes/manager/championship/_championship.tsx'),

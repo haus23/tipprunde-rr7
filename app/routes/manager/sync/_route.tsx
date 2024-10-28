@@ -1,5 +1,5 @@
 import { requireAdmin } from '#/utils/.server/auth';
-import type * as Route from './+types.sync';
+import type * as Route from './+types._route';
 
 export const meta = [
   { title: 'Manager - runde.tips' },
