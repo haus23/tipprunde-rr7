@@ -4,8 +4,8 @@ import { requireAdmin } from '#/utils/.server/auth';
 import type * as Route from './+types._route';
 
 export const meta = [
-  { title: 'Manager - runde.tips' },
-  { name: 'description', value: 'Verwaltung der Haus23 Tipprunde' },
+  { title: 'Synchronisierung - Tipprunde' },
+  { name: 'description', value: 'Synchronisierung der Backends' },
 ];
 
 export const loader = async ({ request }: Route.LoaderArgs) => {
@@ -24,6 +24,5 @@ export const handle = {
 };
 
 export default function SyncRoute({ loaderData }: Route.ComponentProps) {
-  console.log(loaderData);
   return <div />;
 }
