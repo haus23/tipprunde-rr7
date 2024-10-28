@@ -47,6 +47,9 @@ importers:
       tailwind-variants:
         specifier: 0.2.1
         version: 0.2.1(tailwindcss@4.0.0-alpha.30)
+      valibot:
+        specifier: ~1.0.0-beta.2
+        version: 1.0.0-beta.2(typescript@5.6.3)
     devDependencies:
       '@biomejs/biome':
         specifier: 1.9.4
@@ -2662,6 +2665,14 @@ packages:
 
   valibot@0.41.0:
     resolution: {integrity: sha512-igDBb8CTYr8YTQlOKgaN9nSS0Be7z+WRuaeYqGf3Cjz3aKmSnqEmYnkfVjzIuumGqfHpa3fLIvMEAfhrpqN8ng==}
+    peerDependencies:
+      typescript: '>=5'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+
+  valibot@1.0.0-beta.2:
+    resolution: {integrity: sha512-XwAXmUPdB0Hikm6M18dD/a+j+57KA0dFlna5Yh77LBeeItSIQMwyZOjf8E2nWkhDtQ+Ie4GiaZPkLmaszH/4+w==}
     peerDependencies:
       typescript: '>=5'
     peerDependenciesMeta:
@@ -6064,6 +6075,10 @@ snapshots:
     optional: true
 
   valibot@0.41.0(typescript@5.6.3):
+    optionalDependencies:
+      typescript: 5.6.3
+
+  valibot@1.0.0-beta.2(typescript@5.6.3):
     optionalDependencies:
       typescript: 5.6.3
 
