@@ -12,6 +12,11 @@ const envSchema = v.object({
   POSTMARK_TOKEN: v.string(),
   RESEND_TOKEN: v.string(),
 
+  // Firebase
+  FIREBASE_PROJECT_ID: v.string(),
+  FIREBASE_CLIENT_EMAIL: v.string(),
+  FIREBASE_PRIVATE_KEY: v.string(),
+
   // Secrets
   AUTH_SESSION_SECRET: v.string(),
 });
