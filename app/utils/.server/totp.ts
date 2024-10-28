@@ -1,7 +1,8 @@
 import { generateTOTP, verifyTOTP } from '@epic-web/totp';
 import { db } from './db';
+import { env } from './env';
 
-const MAX_ATTEMPTS = Number(process.env.MAX_ATTEMPTS);
+const MAX_ATTEMPTS = env.MAX_ATTEMPTS;
 
 /**
  * Generates and stores TOTP login code.

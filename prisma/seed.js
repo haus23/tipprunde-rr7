@@ -2,12 +2,15 @@ import { PrismaClient } from '@prisma/client';
 import { cert, getApps, initializeApp } from 'firebase-admin/app';
 import { getFirestore } from 'firebase-admin/firestore';
 
-const prisma = new PrismaClient();
+const { FIREBASE_CLIENT_EMAIL, FIREBASE_PROJECT_ID, FIREBASE_PRIVATE_KEY } =
+  // biome-ignore lint/nursery/noProcessEnv: file is only used as node script
+  process.env;
 
+const prisma = new PrismaClient();
 const svcAccount = {
-  projectId: process.env.FIREBASE_PROJECT_ID,
-  clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
-  privateKey: process.env.FIREBASE_PRIVATE_KEY,
+  projectId: FIREBASE_PROJECT_ID,
+  clientEmail: FIREBASE_CLIENT_EMAIL,
+  privateKey: FIREBASE_PRIVATE_KEY,
 };
 
 const apps = getApps();
