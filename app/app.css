@@ -63,7 +63,8 @@
 
     /* Backgrounds */
     --bg-app: light-dark(white, var(--gray-dark-1));
-    --bg-content: light-dark(var(--gray-1), var(--gray-dark-2));
+    --bg-app-content: light-dark(var(--gray-1), var(--gray-dark-2));
+    --bg-content: light-dark(var(--gray-3), var(--gray-dark-3));
     --bg-content-hover: light-dark(var(--gray-4), var(--gray-dark-4));
     --bg-content-active: light-dark(var(--gray-5), var(--gray-dark-5));
 
@@ -83,6 +84,7 @@
 @theme {
   --font-family-sans: "Inter Variable", system-ui, sans-serif;
   --background-color-app: var(--bg-app);
+  --background-color-app-content: var(--bg-app-content);
   --background-color-content: var(--bg-content);
   --background-color-content-hover: var(--bg-content-hover);
   --background-color-content-active: var(--bg-content-active);

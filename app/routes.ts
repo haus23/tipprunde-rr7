@@ -13,7 +13,7 @@ export const routes: RouteConfig = [
   layout('routes/_layouts/manager/_layout.tsx', [
     ...prefix('manager', [
       index('routes/manager/dashboard/_route.tsx'),
-      route('sync', 'routes/manager/championship/sync.tsx'),
+      route('sync', 'routes/manager/sync/_route.tsx'),
       // Current championship
       ...prefix(':championshipId', [
         index('routes/manager/championship/_championship.tsx'),
@@ -29,5 +29,10 @@ export const routes: RouteConfig = [
       route('ligen', 'routes/manager/leagues/_route.tsx'),
       route('regelwerke', 'routes/manager/rulesets/_route.tsx'),
     ]),
+    // Actions
+    route(
+      '/actions/sync/clear-legacy-cache',
+      'routes/_actions/sync/clear-legacy-cache.ts',
+    ),
   ]),
 ];

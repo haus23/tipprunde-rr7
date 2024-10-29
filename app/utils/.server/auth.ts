@@ -4,6 +4,7 @@ import type { User } from '@prisma/client';
 
 import { db } from './db';
 import { sendCodeMail, sendErrorMail } from './emails';
+import { env } from './env';
 import {
   authCookie,
   commitAuthSession,
@@ -12,7 +13,7 @@ import {
 } from './sessions';
 import { createLoginCode, verifyLoginCode } from './totp';
 
-const SESSION_EXPIRATION_TIME = Number(process.env.SESSION_EXPIRATION_TIME);
+const SESSION_EXPIRATION_TIME = env.SESSION_EXPIRATION_TIME;
 
 /**
  * Gets user by email address

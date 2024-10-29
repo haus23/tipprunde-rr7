@@ -1,3 +1,5 @@
+import { env } from './env';
+
 /**
  * Notifies admin about a security breach
  *
@@ -83,7 +85,7 @@ async function sendMailWithPostmark({
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      'X-Postmark-Server-Token': `${process.env.POSTMARK_TOKEN}`,
+      'X-Postmark-Server-Token': `${env.POSTMARK_TOKEN}`,
     },
   });
 
@@ -108,7 +110,7 @@ async function sendMailWithResend(props: EmailProps) {
     body: JSON.stringify(httpBody),
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${process.env.RESEND_TOKEN}`,
+      Authorization: `Bearer ${env.RESEND_TOKEN}`,
     },
   });
 

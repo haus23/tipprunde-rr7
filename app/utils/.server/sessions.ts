@@ -1,4 +1,5 @@
 import { createCookie, createCookieSessionStorage } from 'react-router';
+import { env } from './env';
 
 type AuthSessionData = {
   sessionId: string;
@@ -14,8 +15,8 @@ export const authCookie = createCookie('__auth', {
   sameSite: 'lax',
   path: '/',
   httpOnly: true,
-  secrets: [String(process.env.SESSION_SECRET)],
-  secure: process.env.NODE_ENV === 'production',
+  secrets: [env.AUTH_SESSION_SECRET],
+  secure: env.NODE_ENV === 'production',
 });
 
 const authSessionStorage = createCookieSessionStorage<
