@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@epic-web/cachified':
+        specifier: ^5.2.0
+        version: 5.2.0
       '@epic-web/totp':
         specifier: ~2.0.0
         version: 2.0.0
@@ -282,6 +285,9 @@ packages:
     engines: {node: '>=14.21.3'}
     cpu: [x64]
     os: [win32]
+
+  '@epic-web/cachified@5.2.0':
+    resolution: {integrity: sha512-E/2LdIhS/wcn3ykV+u5xbTFahKtzReO0k4/cVtE7KBYiLCgR6bPRmlDUuyfWhbZX3zOmK+6OL7qdHkvgCWwSiA==}
 
   '@epic-web/totp@2.0.0':
     resolution: {integrity: sha512-lyN8KLhA5uDyX8Z21AwVnHPcqYVm0kxY5kumu5wSMuq2ME1Ry9PE7v2ID8RzIvsBq+MTZ47i4+J9eF6DHUbJ1A==}
@@ -3040,6 +3046,8 @@ snapshots:
 
   '@biomejs/cli-win32-x64@1.9.4':
     optional: true
+
+  '@epic-web/cachified@5.2.0': {}
 
   '@epic-web/totp@2.0.0':
     dependencies:
