@@ -15,6 +15,7 @@ const styles = tv({
       default: 'px-4 py-2',
       ghost: `${interactiveContentStyles.base()} data-[pressed]:scale-95`,
       menuitem: interactiveContentStyles.base(),
+      select: `${interactiveContentStyles.base()} bg-content text-app border justify-between`,
     },
     isHovered: {
       true: '',
@@ -22,7 +23,7 @@ const styles = tv({
   },
   compoundVariants: [
     {
-      variant: ['menuitem', 'ghost'],
+      variant: ['menuitem', 'ghost', 'select'],
       isHovered: true,
       class: interactiveContentStyles.hover(),
     },

@@ -6,6 +6,7 @@ import iconsHref from './icons.svg';
 
 type IconName =
   | 'calendar'
+  | 'chevrons-up-down'
   | 'dices'
   | 'folder'
   | 'folder-sync'
