@@ -1,6 +1,43 @@
 # Changelog
 
 
+## v0.2.9
+
+[compare changes](https://github.com/haus23/tipprunde/compare/v0.2.8...v0.2.9)
+
+### 🚀 Enhancements
+
+- Add firestore championship model. ([e886675](https://github.com/haus23/tipprunde/commit/e886675))
+- Initialize firestore. ([2457596](https://github.com/haus23/tipprunde/commit/2457596))
+- Add repository method. ([3b32e95](https://github.com/haus23/tipprunde/commit/3b32e95))
+- Implement loading firestore championships. ([50f7926](https://github.com/haus23/tipprunde/commit/50f7926))
+- Add cache - to not bomb my firebase usages while developing. ([401ac46](https://github.com/haus23/tipprunde/commit/401ac46))
+- Implement simple select. ([f6a89f5](https://github.com/haus23/tipprunde/commit/f6a89f5))
+- Implement post request to invalidate legacy backend cache ([25427a8](https://github.com/haus23/tipprunde/commit/25427a8))
+
+### 🩹 Fixes
+
+- Validate env vars and provide parsed env. Fixes #22 ([#22](https://github.com/haus23/tipprunde/issues/22))
+- Update page title. Fixes #42 ([#42](https://github.com/haus23/tipprunde/issues/42))
+- Add missing deps for cache implementation. ([c996609](https://github.com/haus23/tipprunde/commit/c996609))
+
+### 💅 Refactors
+
+- Move sync route. ([1dc5bc2](https://github.com/haus23/tipprunde/commit/1dc5bc2))
+- Rename app content color. ([25b99f3](https://github.com/haus23/tipprunde/commit/25b99f3))
+
+### 🏡 Chore
+
+- Update pnpm and align node engines version with types. ([ad18504](https://github.com/haus23/tipprunde/commit/ad18504))
+- Update firebase admin and node typings. ([e30ad20](https://github.com/haus23/tipprunde/commit/e30ad20))
+- Update rr7 to latest pre-release. Loose versioning. ([1126053](https://github.com/haus23/tipprunde/commit/1126053))
+- Update tailwind to latest alpha. Loose versioning. ([9366fc9](https://github.com/haus23/tipprunde/commit/9366fc9))
+- Add valibot v1 beta. ([f9242c4](https://github.com/haus23/tipprunde/commit/f9242c4))
+
+### ❤️ Contributors
+
+- Micha <micha@haus23.net>
+
 ## v0.2.8
 
 [compare changes](https://github.com/haus23/tipprunde/compare/v0.2.7...v0.2.8)
