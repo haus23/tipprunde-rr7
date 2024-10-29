@@ -37,7 +37,7 @@ export function ManagerHeader() {
       <div className="fixed inset-y-0 hidden w-52 border-r shadow-xl md:flex dark:border-0">
         <ManagerNav />
       </div>
-      <div className="fixed inset-x-0 flex h-14 items-center gap-x-2 bg-content px-2 md:left-52">
+      <div className="fixed inset-x-0 flex h-14 items-center gap-x-2 bg-app-content px-2 md:left-52">
         <div className="md:hidden">
           <Dialog isOpen={isOpen} onOpenChange={handleOpenChange}>
             <Button variant="ghost">
