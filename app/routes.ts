@@ -29,5 +29,10 @@ export const routes: RouteConfig = [
       route('ligen', 'routes/manager/leagues/_route.tsx'),
       route('regelwerke', 'routes/manager/rulesets/_route.tsx'),
     ]),
+    // Actions
+    route(
+      '/actions/sync/clear-legacy-cache',
+      'routes/_actions/sync/clear-legacy-cache.ts',
+    ),
   ]),
 ];

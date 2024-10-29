@@ -9,13 +9,14 @@ import { focusRingStyles, interactiveContentStyles } from '../theme';
 
 const styles = tv({
   extend: focusRingStyles,
-  base: 'inline-flex items-center p-1.5',
+  base: `${interactiveContentStyles.base()} inline-flex items-center p-1.5`,
   variants: {
     variant: {
-      default: 'px-4 py-2',
-      ghost: `${interactiveContentStyles.base()} data-[pressed]:scale-95`,
-      menuitem: interactiveContentStyles.base(),
-      select: `${interactiveContentStyles.base()} bg-content text-app border justify-between`,
+      default:
+        'border bg-content px-4 py-2 text-app data-[pressed]:bg-content-active',
+      ghost: 'data-[pressed]:scale-95',
+      menuitem: '',
+      select: 'justify-between border bg-content text-app',
     },
     isHovered: {
       true: '',
@@ -23,7 +24,7 @@ const styles = tv({
   },
   compoundVariants: [
     {
-      variant: ['menuitem', 'ghost', 'select'],
+      variant: ['menuitem', 'ghost', 'select', 'default'],
       isHovered: true,
       class: interactiveContentStyles.hover(),
     },
